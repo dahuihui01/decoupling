@@ -1691,6 +1691,7 @@ INPUT 4.tex
 INPUT ./4.tex
 INPUT ./4.tex
 INPUT 4.tex
+INPUT /usr/local/texlive/2022/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-ot1.tfm
 INPUT ./5.tex
 INPUT ./5.tex
 INPUT ./5.tex
