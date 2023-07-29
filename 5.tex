@@ -70,5 +70,12 @@ Now we investigate the case where $l_{j,a}$ are not parallel to the $x_j$-axis, 
 \begin{equation*}
     \int_{\R^2}\sum_{a=1}^{N_1}T_{1,a}\sum_{b=1}^{N_2}T_{2,b}=\sum_{a=1}^{N_1}\sum_{b=1}^{N_2}\int_{\R^2}T_{1,a}\cdot T_{2,b}\lesssim N_1N_2
 \end{equation*}
-The last inequality follows from the fact that the product of $T_{1,a}\cdot T_{2,b}$ is equal to 1 in an area that may be slightly larger than 1 (going at different angles).
+The last inequality follows from the fact that the product of $T_{1,a}\cdot T_{2,b}$ is equal to 1 in an area that may be slightly larger than 1 (going at different angles). The same inequality would hold if we replace lines with curves, and denote the angle at a given point $x\in\gamma_{j,a}$ to be the angle between the tangent line and the $x_j$-axis and have that less than $\delta$. However, the result is incorrect in $n=3$ for cuves, but there is a good result about tilting lines by Bennett-Carbery-Tao in 2005.
 
+\begin{theorem}[Bennett-Carbery-Tao, 2005]
+    Let $l_{j,a}$ be lines in $\R^n$ with an angle between $l_{j,a}$ and the $x_j$-axis no larger than $\frac{1}{100n}$. Let $T_{j,a}$ be the characteristic function of 1-neighborhood of $l_{j,a}$ (i.e. a tube of radius 1), then suppose $Q_s$ is a cube of side length $s$, then for any $\epsilon>0$, we have
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
+    \end{equation*}
+\end{theorem}
+In other words, the inequality of Loomis-Whitney holds with an 
