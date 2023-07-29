@@ -55,3 +55,23 @@ Based off of the smooth bump function in the Fourier space, we now consider its 
 
 Let's now get in business. Consider single wavepackets $f_\theta$, a wave packet is the inverse Fourier transform of a bump function in the Fourier space, for example, $f_\theta=\check{\eta}$, where $\eta(omega)=1$ on $\theta$ and decays rapidly off of it. Here we consider these wave packets normalized as $f_\theta(0)=1$, let $f=\sum_\theta f_\theta$.
 
+Then in a small neighborhood of $0$, where not much cancellation can happen, we have $|f(0)|$ equals the number of $\theta$, which is $R^{(n-1)/2}$. Hence the $L^p$ norm of $f$.
+\begin{equation*}
+    \|f\|_{L^p}\geq \|f\|_{B_1}\gtrsim R^{(n-1)/2}
+\end{equation*}
+
+And now we consider the RHS of the decoupling relation, which is the $L^p$ norm of each wave packet, that is $f_\theta$. Because $\widehat{f_\theta}$ is supported in $\theta$ and $f_\theta$ is normalized, hence $f_\theta$ is 1 on $\theta^*$ and decays rapidly off of it. Hence,
+\begin{equation*}
+    \|f\|_{L^p}\sim |\theta^*|^{1/p}=R^{(n+1)/(2p)}
+\end{equation*}
+Hence we have,
+\begin{equation*}
+    \left(\sum_\theta\|f\|_{L^p}^2\right)^{1/2}\sim R^{\frac{n-1}{4}+\frac{n+1}{2p}}
+\end{equation*}
+Combining, we have $R^{(n-1)/2}\lesssim D_p R^{\frac{n-1}{4}+\frac{n+1}{2p}}$, hence $D_p\gtrsim R^{\frac{n-1}{4}-\frac{n+1}{2p}}$. And Bourgain and Demeter claim up to an $R^\epsilon$ loss, this is the worst that can happen.
+
+\begin{theorem}[Bourgain and Demeter]
+    $D_p(R)\lesssim R^\epsilon \max\{R^{\frac{n-1}{4}-\frac{n+1}{2p}},1\}$
+\end{theorem}
+
+
