@@ -1,0 +1,76 @@
+\section*{Lecture 3}
+We state Bourgain and Demeter's decoupling theorem for the parabaloid. We define a parabaloid as
+\begin{equation*}
+    P=\{\omega\in\R^n: \omega_n=\omega_1^2+...\omega_{n-1}^2, |\omega|\leq 1\}
+\end{equation*}
+We now define a slightly larger neighborhood of $P$, denoted by $N_{1/R}P$ as the neighborhood of $P$ of radius $1/R$ where $R$ is some large constant. This is the area that we will cut up using rectangles $\theta$,
+\begin{equation*}
+    \theta\approx R^{-1/2}\times R^{-1/2}\times...\times R^{-1}
+\end{equation*}
+Now we've fixed a decomposition, we denote its decoupling constant $D_p(R)=D_p(\omega=\cup\theta)$, and we ar eready to state our decoupling theorem.
+
+\begin{theorem}[Bourgain and Demeter]
+    For $2\leq p\leq\frac{2(n+1)}{n-1}$, for the ``cutting up'' scheme above, we have
+    \begin{equation*}
+        D_p(R)\lesssim R^{\epsilon}
+    \end{equation*}
+\end{theorem}
+
+Now we define the dual of $\theta$, denoted by $\theta^*=\{x\in\R^n: |\omega-\omega_\theta|<\frac{1}{x}, \forall\omega\in\theta\}$, with $\omega_\theta$ being the center of $\theta$.
+
+
+Now we look at how these are $\widehat{\phi}$ behaves on $\theta*$ and then rapidly decaying. 
+\begin{lemma}
+    If $\phi_\theta$ is a smooth bump function supported in $\theta$, then $\check{\phi_\theta}\sim|\theta|$ on $\theta^*|$ and rapidly decaying outside of it.
+\end{lemma}
+\begin{proof}
+    If $\phi_\theta$ lives on $\theta$, we calculate its inverse Fourier transform to find the corresponding function in the physical space. 
+    \begin{equation*}
+        |\check{\phi_\theta}|=\left|\int e^{2\pi ix\omega}\phi_\theta(\omega)d\omega \right|=\left|e^{2\pi ix\omega_\theta}\int e^{2\pi ix(\omega-\omega_\theta)}\phi_\theta(\omega)d\omega \right|=\left|\int_\theta e^{2\pi ix(\omega-\omega_\theta)} \right| \sim |\theta|
+    \end{equation*}
+    If $x\in\theta^*$, then we know $|(\omega-\omega_\theta)x|<1$, hence the oscillatory integral on the right hand side does not get too much cancellation, hence $|\check{\phi_\theta}|\sim|\theta|$, while outside of $\theta^*$, if one integrate by parts many times, then get rapid decay.
+\end{proof}
+\begin{remark}
+    This lemma shows why the dual $\theta^*$ is called the dual, i.e., if we consider functions first in the Fourier space, then we can find the corresponding $\theta^*$ such that $\check{\phi_\theta}$ is located and the size of it. Moreover, 
+    \begin{equation*}
+        \check{\phi_\theta} \text{ roughly looks like } e^{2\pi i x\omega_\theta}|\theta|\chi_{\theta^*}
+    \end{equation*}
+\end{remark}
+
+Based off of the smooth bump function in the Fourier space, we now consider its translation $check{\phi_\theta}(x-x_0)$ and the sum $\sum a_k\check{\phi_\theta}(x-x_0)$. Recall the locally constant lemma in lecture 2 states that if we consider the a function $f$ whose Fourier support $supp (\widehat{f})\subset I$, then we have the locally constant lemma which states $\|f\|_{L^\infty(I)}\lesssim \|f\|_{L^1(\omega_I)}$, where $\omega_I$ is 1 on $I$ and rapidly decays off of $I$. Here we present a similar result.
+
+\begin{lemma}[Locally Constant]
+    Suppose $f$ is such that $supp(\widehat{f})\subset\theta$, and $T$ is some translation of $\theta^*$, then the locally constant lemma holds on $T$ as well, namely,
+    \begin{equation*}
+        \|f\|_{L^\infty(T)}\lesssim \|f\|_{L^1(\omega_T)}
+    \end{equation*}
+    where the $L^1$ norm here is the average $L^1$ norm.
+\end{lemma}
+\begin{proof}
+    Just like how we proved the unit interval case, we define a smooth bump function in the Fourier space that captures $f$. Let $\eta$ bu such that it is 1 on $\theta$ and decays rapidly outside of $\theta$, $|\eta(\omega)|\leq\left(\frac{1}{1+|\omega|} \right)^M$, for all large $M$. Then we have $\widehat{f}=\eta\widehat{f}$, hence \begin{equation*}
+        |f(x)|\leq\sup_{x\in T}\int|f(y)\check{\eta}(x-y)|dy\leq \int|f(y)|\sup_{x\in T}|\check{\eta}(x-y)|dy
+    \end{equation*}
+    As we noted above, $|\check{\eta}|\sim |\theta|=\frac{1}{|\theta^*|}$ on $\theta^*$ and decays rapidly off of it. And we note $\omega_T(y)=\sup_{x\in T}\check{\eta}(x-y)$ also behaves on $T$ like this.
+\end{proof}
+
+Let's now get in business. Consider single wavepackets $f_\theta$, a wave packet is the inverse Fourier transform of a bump function in the Fourier space, for example, $f_\theta=\check{\eta}$, where $\eta(omega)=1$ on $\theta$ and decays rapidly off of it. Here we consider these wave packets normalized as $f_\theta(0)=1$, let $f=\sum_\theta f_\theta$.
+
+Then in a small neighborhood of $0$, where not much cancellation can happen, we have $|f(0)|$ equals the number of $\theta$, which is $R^{(n-1)/2}$. Hence the $L^p$ norm of $f$.
+\begin{equation*}
+    \|f\|_{L^p}\geq \|f\|_{B_1}\gtrsim R^{(n-1)/2}
+\end{equation*}
+
+And now we consider the RHS of the decoupling relation, which is the $L^p$ norm of each wave packet, that is $f_\theta$. Because $\widehat{f_\theta}$ is supported in $\theta$ and $f_\theta$ is normalized, hence $f_\theta$ is 1 on $\theta^*$ and decays rapidly off of it. Hence,
+\begin{equation*}
+    \|f\|_{L^p}\sim |\theta^*|^{1/p}=R^{(n+1)/(2p)}
+\end{equation*}
+Hence we have,
+\begin{equation*}
+    \left(\sum_\theta\|f\|_{L^p}^2\right)^{1/2}\sim R^{\frac{n-1}{4}+\frac{n+1}{2p}}
+\end{equation*}
+Combining, we have $R^{(n-1)/2}\lesssim D_p R^{\frac{n-1}{4}+\frac{n+1}{2p}}$, hence $D_p\gtrsim R^{\frac{n-1}{4}-\frac{n+1}{2p}}$. And Bourgain and Demeter claim up to an $R^\epsilon$ loss, this is the worst that can happen.
+
+\begin{theorem}[Bourgain and Demeter]
+    $D_p(R)\lesssim R^\epsilon \max\{R^{\frac{n-1}{4}-\frac{n+1}{2p}},1\}$
+\end{theorem}
+

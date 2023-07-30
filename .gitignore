@@ -9,6 +9,6 @@
 *.run.xml
 *.synctex.gz
 *.toc
-*.tex
+*【1-5】.tex
 *.jpg
 .vscode
