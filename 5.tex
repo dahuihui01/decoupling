@@ -135,17 +135,43 @@ Then we consider smaller cube that are inside this cube. First we introduce the 
     \begin{equation*}
         N_j(Q_s)\leq\sum_{a=1}^{N_j}T_{j,a,\delta^{-1}}
     \end{equation*}
-    Moreover, because $s\leq\frac{1}{10n}\delta^{-1}$, we have $|Q_s|\lesssim\delta^{-n}$, thus obtaining the inequality.
+    Moreover, because $s\leq\frac{1}{10n}\delta^{-1}$, we have $|Q_s|\lesssim\delta^{-n}$, thus obtaining the inequality. And by the same reasoning, we have
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-(m-1)}}\right)^{\frac{1}{n-1}}\lesssim_n \delta^n\int_{Q^s}\prod_{j=1}^n \left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-m}} \right)^{\frac{1}{n-1}}
+    \end{equation*}
+    And by inducting on $m$, we get
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq C(n)^m \delta^{nm}\int_{Q^s}\prod_{j=1}^n \left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-m}} \right)^{\frac{1}{n-1}}
+    \end{equation*}
 \end{proof}
 
 Now we connect the above two lemmas.
 \begin{proposition}
     Let $s\leq\delta^{-1}$, then we have
     \begin{equation*}
-        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim C(n)\delta^n\int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-1}} \right)^{\frac{1}{n-1}}
+        \int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq C(n)\delta^n\int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-1}} \right)^{\frac{1}{n-1}}
     \end{equation*}
 \end{proposition}
 \begin{proof}
-This essentially follows from cutting $Q_s$ up into smaller cubes of the form in the previous lemma and use the lemma. 
-
+This essentially follows from cutting $Q_s$ up into smaller cubes of the form in the previous lemma and use the lemma. Let $Q_s=\sum_bQ_{s,b}$,
+\begin{equation*}
+    \int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}=\sum_b\int_{Q_{s, b}}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq C(n)\delta^n\sum_b\int_{Q_{s,b}}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a, \delta^{-1}}\right)^\frac{1}{n-1}
+\end{equation*}
+with the RHS $=C(n)\delta^n\int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a, \delta^{-1}}\right)^\frac{1}{n-1}$. And by the same reasoning, going along with what happened right before this proposition, for arbitrary large $m$, and a cube with $s\leq\delta^{-m}$, we have
+\begin{equation*}
+    \int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq C(n)^m\delta^{nm}\int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-m}} \right)^{\frac{1}{n-1}}
+\end{equation*}
 \end{proof}
+
+Finally, we have all the tools to prove the main lemma, i.e. there always exists $\delta>0$ such that
+\begin{equation*}
+    \int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
+\end{equation*}
+\begin{proof}
+    Note that $\sum_{a=1}^{N_j}T_{j,a,\delta^{-m}}\leq N_j$, and $|Q_s|\leq \delta^{-nm}$, hence it suffices to choose $C(n)\leq s^\epsilon$. We note that
+    \begin{equation*}
+        C(n)^m\leq C(n)^{\frac{\log s}{-\log(\delta)}}=s^{\frac{\log C(n)}{-\log\delta}}
+    \end{equation*}
+    Hence it suffices to choose $\delta$ small enough such that $\frac{\log C(n)}{-\log\delta}\leq\epsilon$ as required.
+\end{proof}
+\qed
