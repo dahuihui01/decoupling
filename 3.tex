@@ -1,167 +1,76 @@
-\section*{Lecture 2}
-Now we begin with some building blocks.
+\section*{Lecture 3}
+We state Bourgain and Demeter's decoupling theorem for the parabaloid. We define a parabaloid as
+\begin{equation*}
+    P=\{\omega\in\R^n: \omega_n=\omega_1^2+...\omega_{n-1}^2, |\omega|\leq 1\}
+\end{equation*}
+We now define a slightly larger neighborhood of $P$, denoted by $N_{1/R}P$ as the neighborhood of $P$ of radius $1/R$ where $R$ is some large constant. This is the area that we will cut up using rectangles $\theta$,
+\begin{equation*}
+    \theta\approx R^{-1/2}\times R^{-1/2}\times...\times R^{-1}
+\end{equation*}
+Now we've fixed a decomposition, we denote its decoupling constant $D_p(R)=D_p(\omega=\cup\theta)$, and we ar eready to state our decoupling theorem.
 
-Suppose $\Omega=[0,N], \theta_j=[j-1. j], \Omega=\bigsqcup_{j=1}^N\theta_j$. And we ask the question, if we have $supp(\widehat{f})\subset[0,1]$, could $|f|$ look like several narrow peaks and almost 0 elsewhere?
-
-We recall how we decouple the function $f$: for $supp(\widehat{f})\subset\Omega$, define $f_{\theta_j}=\int_{[j-1, j]}\widehat{f}(\omega)e^{i\omega x}d\omega$, then $f=\sum_jf_{\theta_j}$.
-
-Now we remind ourselves of the height of $f$.
-\begin{proposition}
-    Let $f\in\mathcal{S}$ be such that $supp(\widehat{f})\subset[0,1]$, and we have
+\begin{theorem}[Bourgain and Demeter]
+    For $2\leq p\leq\frac{2(n+1)}{n-1}$, for the ``cutting up'' scheme above, we have
     \begin{equation*}
-        ||f||_{L^\infty}\lesssim||f||_{L^1}
+        D_p(R)\lesssim R^{\epsilon}
     \end{equation*}
-\end{proposition}
+\end{theorem}
+
+Now we define the dual of $\theta$, denoted by $\theta^*=\{x\in\R^n: |\omega-\omega_\theta|<\frac{1}{x}, \forall\omega\in\theta\}$, with $\omega_\theta$ being the center of $\theta$.
+
+
+Now we look at how these are $\widehat{\phi}$ behaves on $\theta*$ and then rapidly decaying. 
+\begin{lemma}
+    If $\phi_\theta$ is a smooth bump function supported in $\theta$, then $\check{\phi_\theta}\sim|\theta|$ on $\theta^*|$ and rapidly decaying outside of it.
+\end{lemma}
 \begin{proof}
-    We define a cutoff function $\eta\in\mathcal{S}$ such that $\eta=1$ on $[0,1]$, then $\widehat{f}=\eta\widehat{f}$, then $f=f\ast\check{\eta}$, also a Schwartz function.
-\begin{align*}
-    ||f||_{L^\infty}&=||f\ast\check{\eta}||_{L^\infty}\\
-    &\leq||f||_{L^1}||\check{\eta}||_{L^\infty}\\
-    &\lesssim||f||_{L^1}
-\end{align*}
-\end{proof}
-Hence the answer is no, because if we have narrow peaks with controlled heights, $||f||_{L^1}$ would be small, which would violate $||f||_{L^\infty}\lesssim||f||_{L^1}$.
-
-Now we ask the following question, can we have flat parts of $|f|$ where $||f||_{L^1}$ is dominated by the flat parts, but still has narrow peaks? To address that, we introduce an important lemma which allows us to control the height of $f$ in one interval using its $L^1$ norm in an even larger interval.
-
-\begin{proposition}[Locally Constant Lemma]
-    If $supp\widehat{f_1}\subset[0,1]$, and $I$ is the unit interval $[0,1]$, then we have
+    If $\phi_\theta$ lives on $\theta$, we calculate its inverse Fourier transform to find the corresponding function in the physical space. 
     \begin{equation*}
-        ||f||_{L^\infty(I)}\lesssim ||f||_{L^1(\omega_I}
+        |\check{\phi_\theta}|=\left|\int e^{2\pi ix\omega}\phi_\theta(\omega)d\omega \right|=\left|e^{2\pi ix\omega_\theta}\int e^{2\pi ix(\omega-\omega_\theta)}\phi_\theta(\omega)d\omega \right|=\left|\int_\theta e^{2\pi ix(\omega-\omega_\theta)} \right| \sim |\theta|
     \end{equation*}
-    Where the weighted $L^1$ norm is defined to be $||f||_{L^1(\omega_I)}=\int_{\R}|f_1|\omega_I$
-    where the function $\omega_I$ satisfies the following: $\omega_I\geq 0$, $\omega_I\sim 1$ on $I$, and $\omega_I$ decays rapidly off of $I$, lastly, $\omega_I$ is uniform in the sense that $\omega_{I+a}=\omega_I(\cdot-a)$
-\end{proposition}
-\begin{proof}
-    This follows from the fact that $\eta\in\mathcal{S}$, hence $\check{\eta}\in\mathcal{S}$ as well, i.e. we have
-    \begin{equation*}
-        |\check{\eta}(y)|\lesssim \left(\frac{1}{1+|y|}\right)^{M}
-    \end{equation*}
-    for all large $M$.
-Hence we follow the same computation:
-\begin{align*}
-    |f(x)|&=\left|\int f(y)\check{\eta}(x-y)dy \right|\\
-    &\leq \int|f(y)||\check{\eta}(x-y)|dy\\
-    &\leq \int|f(y)|\sup_{x\in I}|\check{\eta}(x-y)|dy
-\end{align*}
-And if we define $\omega_I(y)=\sup_{x\in I}|\check{\eta}(x-y)|$, surely it  satisfies being nonnegative, and by property of $\check{\eta}$ being Schwartz, $\check{\eta}\sim 1$ on $I$, and decays rapidly if $|x-y|$ is greater than 0.
+    If $x\in\theta^*$, then we know $|(\omega-\omega_\theta)x|<1$, hence the oscillatory integral on the right hand side does not get too much cancellation, hence $|\check{\phi_\theta}|\sim|\theta|$, while outside of $\theta^*$, if one integrate by parts many times, then get rapid decay.
 \end{proof}
-In other words, we almost know that 
-$||f||_{L^\infty(I)}\lesssim ||f||_{L^1(2I)}$, where $2I$ is if we stretch the intervals keeping the same center.
-
 \begin{remark}
-    For $p=2, p=\infty$, the decoupling constant is easier to estimate. For $p=2$, we can apply Plancherel, namaley,
+    This lemma shows why the dual $\theta^*$ is called the dual, i.e., if we consider functions first in the Fourier space, then we can find the corresponding $\theta^*$ such that $\check{\phi_\theta}$ is located and the size of it. Moreover, 
     \begin{equation*}
-        ||f||_{L^2}=||\sum_jf_{\theta_j}||_{L^2}=||\sum_j\widehat{f}_{\theta_j}||_{L^2}=\sum_j||f_{\theta_j}||_{L^2}=\sum_{j}||f_{\theta_j}||_{L^2}
-    \end{equation*}
-    For $p=\infty$, we can apply Cauchy Schwartz, namely,
-    \begin{equation*}
-        ||f||_{L^\infty}=||\sum_jf_{\theta_j}||_{L^\infty}\leq\sum_j||f_{\theta_j}||_{L^\infty}\leq\left(\sum_j||f_{\theta_j}||_{L^\infty}^2\right)^{1/2}N^{1/2}
+        \check{\phi_\theta} \text{ roughly looks like } e^{2\pi i x\omega_\theta}|\theta|\chi_{\theta^*}
     \end{equation*}
 \end{remark}
 
-And now we conclude with an example. Consider a function $f_1$ with height 1, (i.e. $||f||_{L^\infty}=1)$ and $f_1(0)=1$ and it is concentrated on the interval $[-1,1]$. If we define $f_j(x)=e^{2\pi i(j-1)x}f_1(x)$ and define $f=\sum_jf_j$, then we have $f_j(0)=1$ and thus $f(0)=N$.
+Based off of the smooth bump function in the Fourier space, we now consider its translation $check{\phi_\theta}(x-x_0)$ and the sum $\sum a_k\check{\phi_\theta}(x-x_0)$. Recall the locally constant lemma in lecture 2 states that if we consider the a function $f$ whose Fourier support $supp (\widehat{f})\subset I$, then we have the locally constant lemma which states $\|f\|_{L^\infty(I)}\lesssim \|f\|_{L^1(\omega_I)}$, where $\omega_I$ is 1 on $I$ and rapidly decays off of $I$. Here we present a similar result.
 
-We note that $f_j$ oscillates with frequency $\frac{1}{j}$ and when $|x|\leq\frac{1}{10N}\leq\frac{1}{10j}$, we have $f_(x)\sim N$. Hence, if we consider $||f||_{L^p}$, we have
-\begin{equation*}
-    ||f||_{L^p}^p=\int|f|^p=
-    \geq\int_{|x|\leq\frac{1}{10N}}|f|^p=
-    \gtrsim\frac{1}{N}\cdot N^p=N^{p-1}
-\end{equation*}
-Hence taking the $1/p$ of both sides, we have $||f||_{L^p}\gtrsim N^{1-1/p}$.
-
-Now if we would wish to consider the decoupling constant, we now consider $||f_j||_{L^p}$. Note $||f_j||_{L^p}\sim 1$, hence $\left(\sum_j||f_j||_{L^2}^2 \right)\sim N^{1/2}$. Thus we have $D_p\gtrsim N^{1/2-1/p}$.
-
-\subsection*{Main Obstacle}
-Consider a function $f_j$ such that $|f_j|=1$ on $[0,1]$, and is $\frac{1}{N}$ on $[1, N^3]$, and 0 elsewhere. Then the $||f_j||_{L^2}\sim N^{1/2}$, whereas $||f_j||_{L^4}\sim 1$. (Exactly how one owuld expect the $L^p$ norm to behave).
-
-Like the above remark, we note that $||f||_{L^2}\sim \sum_j||f_j||_{L^2}^2)^{1/2}\sim N$, and $||f||_{L^\infty}\leq N^{1/2}(N)^{1/2}=N$. Now we ask the question, could $|f(x)|\sim N$ on the unit interval $[0,1]$?
-The answer is no.
-\begin{proof}
-    Assume $|f(x)|\sim N$ on $[0,1]$, then $||f||_{L^4}\gtrsim N$, however, we know
+\begin{lemma}[Locally Constant]
+    Suppose $f$ is such that $supp(\widehat{f})\subset\theta$, and $T$ is some translation of $\theta^*$, then the locally constant lemma holds on $T$ as well, namely,
     \begin{equation*}
-        ||f||_{L^4}\lesssim D_p\left(\sum_j||f_j||_{L^4}^2\lesssim N^{1/4}\cdot N^{1/2}=N^{3/4} \right)
+        \|f\|_{L^\infty(T)}\lesssim \|f\|_{L^1(\omega_T)}
     \end{equation*}
-    Note $D_p$ arises from our above lower bound given that $p=4$.
-\end{proof}
-
-Recall the Local Constant Lemma tells us how the height is controlled by the $L^1$ norm, now we introduce another lemma that connects the $L^2$ norms, which improves our estimate.
-\begin{lemma}[Local Orthogonality Lemma]
-    If $I$ is a unit interval, and $f=\sum_{j=1}^Nf_j$, and $supp\widehat{f_j}\subset[j-1,f]$, then we have
-    \begin{equation*}
-        ||f||_{L^2(I)}^2\lesssim\sum_j||f_j||_{L^2(\omega_I)}^2
-    \end{equation*}
+    where the $L^1$ norm here is the average $L^1$ norm.
 \end{lemma}
 \begin{proof}
-    We choose $\eta$ such that it preserves $f$ on the unit interval, and whose fourier transform has support land in $[-1,1]$, i.e. $|\eta|\sim 1$ on $I$, and $supp(\eta)\subset[-1,1]$.
-    \begin{align*}
-        ||f||_{L^2(I)}^2&=\int_I|f|^2\\
-        &\leq\int_{\R}|\eta f|^2\\
-        &=\int_{\R}|\widehat{\eta}\ast\widehat{f}|^2\\
-        &=\int|\sum_j\widehat{\eta}\ast\widehat{f}|^2\\
-        &\lesssim\sum_j\int_{\R}|\widehat{\eta}\ast\widehat{f}|^2\\
-        &=\sum_j\int_{\R}|\eta|^2|f_j|^2\\
-        &=\sum_j||f||_{L^2(\omega_I)}^2
-    \end{align*}
-    if we define $\omega_I=|\eta|^2$.
+    Just like how we proved the unit interval case, we define a smooth bump function in the Fourier space that captures $f$. Let $\eta$ bu such that it is 1 on $\theta$ and decays rapidly outside of $\theta$, $|\eta(\omega)|\leq\left(\frac{1}{1+|\omega|} \right)^M$, for all large $M$. Then we have $\widehat{f}=\eta\widehat{f}$, hence \begin{equation*}
+        |f(x)|\leq\sup_{x\in T}\int|f(y)\check{\eta}(x-y)|dy\leq \int|f(y)|\sup_{x\in T}|\check{\eta}(x-y)|dy
+    \end{equation*}
+    As we noted above, $|\check{\eta}|\sim |\theta|=\frac{1}{|\theta^*|}$ on $\theta^*$ and decays rapidly off of it. And we note $\omega_T(y)=\sup_{x\in T}\check{\eta}(x-y)$ also behaves on $T$ like this.
 \end{proof}
 
-We thus obtain this local orthogonality result, in the sense that we can decompose the $L^2$ norm locally and control the $L^2$ norm of $f$ by the sum of the $L^2$ norm of $f_j$.
+Let's now get in business. Consider single wavepackets $f_\theta$, a wave packet is the inverse Fourier transform of a bump function in the Fourier space, for example, $f_\theta=\check{\eta}$, where $\eta(omega)=1$ on $\theta$ and decays rapidly off of it. Here we consider these wave packets normalized as $f_\theta(0)=1$, let $f=\sum_\theta f_\theta$.
 
-Now we generalize this to a wide range of $p$ to obtain our local decoupling result.
-
-\begin{proposition}[Local decoupling]
-    If $I$ is a unit interval, for $2\leq p\leq\infty$, for each $1\leq j\leq N$, $supp(f_j)\subset[j-1,j]$, then we have
-    \begin{equation*}
-        ||f||_{L^p(I)}\lesssim N^{1/2-1/p}\left(\sum_{j=1}^N||f_j||_{L^p(\omega_I)}^2 \right)^{1/2}
-    \end{equation*}
-\end{proposition}
-\begin{proof}
-    This follows from the Locally Constant Lemma and the Locally Orthogonality Lemma above. 
-    \begin{equation*}
-        \int|f|^p=\int|f|^2|f|^{p-2}\leq||f||_{L^\infty(I)}^{p-2}\int|f|^2\leq\sum_{j}||f_{j}||_{L^2(\omega_I)}^2\left(\sum_j||f_j||_{L^\infty(I)}\right)^{p-2}
-    \end{equation*}
-\end{proof}
-The last inequality follows from the local orthogonality lemma above which states $||f||_[L^2(I)]\leq\sum_j||f_j||_{L^2(\omega_I)}$.
-
-Then for the second term, local constant lemma states that the height is controlled by the $L^1$ norm $||f_j||_{L^\infty}\lesssim ||f_j||_{L^1(\omega_I)}\lesssim ||f_j||_{L^2}$, where the last inequality is to match the $L^2$ norm of the first term. Combining, we have $\int|f|^p\leq (\sum_j\|f_j\|_{L^2(\omega_I)}^2)(\sum_j\|f\|_{L^2(\omega_I)})^{p-2}$. By Cauchy Schwarz on the second term, we obtain,
+Then in a small neighborhood of $0$, where not much cancellation can happen, we have $|f(0)|$ equals the number of $\theta$, which is $R^{(n-1)/2}$. Hence the $L^p$ norm of $f$.
 \begin{equation*}
-    \int|f|^p\leq\left(\sum_{j}\|f_j\|_{L^2(\omega_I)}^2 \right)\left(\sum_{j}\|f_j\|_{L^2(\omega_I)}^2 \right)^{p/2-1}N^{p/2-1}=\left(\sum_{j}\|f_j\|_{L^2(\omega_I)}^2 \right)^{p/2}N^{p/2-1}
+    \|f\|_{L^p}\geq \|f\|_{B_1}\gtrsim R^{(n-1)/2}
 \end{equation*}
-If we replace the $\|f\|_{L^2}$ with $\|f\|_{L^p}$, we get the desired result.
 
-\begin{lemma}
-    In finite measure spaces, for $p\geq q$, we have 
-    \begin{equation*}
-        \|f\|_{L^p}\lesssim \|f\|_{L^q}
-    \end{equation*}
-\end{lemma}
-\begin{proof} This follows from Holder's inequality.
-    \begin{equation*}
-        \int_I|f|^p=\| |f|^p \|_{L^{q/p}}\mu(I)^{s}\lesssim\|f\|_{L^q}^p
-    \end{equation*}
-\end{proof}
+And now we consider the RHS of the decoupling relation, which is the $L^p$ norm of each wave packet, that is $f_\theta$. Because $\widehat{f_\theta}$ is supported in $\theta$ and $f_\theta$ is normalized, hence $f_\theta$ is 1 on $\theta^*$ and decays rapidly off of it. Hence,
+\begin{equation*}
+    \|f\|_{L^p}\sim |\theta^*|^{1/p}=R^{(n+1)/(2p)}
+\end{equation*}
+Hence we have,
+\begin{equation*}
+    \left(\sum_\theta\|f\|_{L^p}^2\right)^{1/2}\sim R^{\frac{n-1}{4}+\frac{n+1}{2p}}
+\end{equation*}
+Combining, we have $R^{(n-1)/2}\lesssim D_p R^{\frac{n-1}{4}+\frac{n+1}{2p}}$, hence $D_p\gtrsim R^{\frac{n-1}{4}-\frac{n+1}{2p}}$. And Bourgain and Demeter claim up to an $R^\epsilon$ loss, this is the worst that can happen.
 
-Now we prove the parallel decoupling lemma, which basically states that if we decompose two measures as $\mu=\sum_i\mu_i, \omega=\sum_i\omega_i$, and for each $i$, we have the same decoupling constant, then we would be able to keep that decoupling constant when we sum them up. Recall the Minkowski's inequality refers to triangle inequality with respect to the $L^p$ norm.
+\begin{theorem}[Bourgain and Demeter]
+    $D_p(R)\lesssim R^\epsilon \max\{R^{\frac{n-1}{4}-\frac{n+1}{2p}},1\}$
+\end{theorem}
 
-\begin{proposition}[Parallel Decoupling Lemma]
-    For some $p\geq 2$, and for any function $g=\sum_jg_j$, and any measures $\mu=\sum_i\mu_i, \omega=\sum_i\omega_i$, then if for each $i$, we have
-    \begin{equation*}
-        \|g\|_{L^p(\mu_i)}\leq D\left(\sum_j\|g_j\|_{L^p(\omega_i)}^2 \right)^{1/2}
-    \end{equation*}
-    then summing up, we would have the combined inequallity with the same decoupling constant,
-    \begin{equation*}
-        \|g\|_{L^p(\mu)}\leq D\left(\sum_j\|g_j\|_{L^p(\omega)}^2 \right)^{1/2}
-    \end{equation*}
-\end{proposition}
-\begin{proof}
-    The proof uses the Minkowski's inequality.
-    \begin{align*}
-        \int|g|^p\mu&=\sum_i\int|g|^p\mu_i\\
-        &\leq D^p\sum_i\left(\sum_j\|g_j\|_{L^p(\omega_i)}^2 \right)^{p/2}\\
-        &\leq D^p \left\|\sum_j||g_j||_{L^p(\omega_i)}^2 \right\|_{l_i^{p/2}}^{p/2}\\
-        &\leq D^p\left(\sum_j\left\|||g_j||_{L^p(\omega_i)}^2 \right\|_{l_i^{p/2}}\right)^{p/2}\\
-        &=D^p\left(\sum_j\left(\sum_i||g_j||_{L^p(\omega_i)}^p\right)^{2/p} \right)^{p/2}\\
-        &=D^p\left(\sum_j||g_j||_{L^p(\omega)}^2 \right)^{p/2}
-    \end{align*}
-\end{proof}

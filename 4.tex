@@ -1,76 +1,177 @@
-\section*{Lecture 3}
-We state Bourgain and Demeter's decoupling theorem for the parabaloid. We define a parabaloid as
-\begin{equation*}
-    P=\{\omega\in\R^n: \omega_n=\omega_1^2+...\omega_{n-1}^2, |\omega|\leq 1\}
-\end{equation*}
-We now define a slightly larger neighborhood of $P$, denoted by $N_{1/R}P$ as the neighborhood of $P$ of radius $1/R$ where $R$ is some large constant. This is the area that we will cut up using rectangles $\theta$,
-\begin{equation*}
-    \theta\approx R^{-1/2}\times R^{-1/2}\times...\times R^{-1}
-\end{equation*}
-Now we've fixed a decomposition, we denote its decoupling constant $D_p(R)=D_p(\omega=\cup\theta)$, and we ar eready to state our decoupling theorem.
+\section*{Lecture 4}
 
-\begin{theorem}[Bourgain and Demeter]
-    For $2\leq p\leq\frac{2(n+1)}{n-1}$, for the ``cutting up'' scheme above, we have
+We first start with a warm up problem using projections. Consider a set $U$ in $\R^3$ is bounded,
+
+$\begin{cases}
+    Area(Proj_{xy-plane}(U))=A\\
+    Area(Proj_{xz-plane}(U))=B\\
+    Area(Proj_{yz-plane}(U))=C
+\end{cases}$
+Then what is $|U|$ bounded by?
+\begin{proposition}
     \begin{equation*}
-        D_p(R)\lesssim R^{\epsilon}
+        |U|\leq (ABC)^{1/2}
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    We first just consider the projection of $U$ onto the $xy$-plane, i.e., fix $z$, we define $U_z=\{(x,y):(x,y,z)\in U\}$, then for any $z$, we have $|U_z|\leq A$. Then we cut up $U_z$ to find another bound using $B,C$. For $U_z$, fix $y$, if we define $X_z=\{x\in: (x,y)\in U_z\}$, and $Y_z=\{y\in\R: (x,y)\in U_z\}$. Hence by a simple picture, we have $|U_z|\leq|X_z||Y_z|$. Then we apply Cauchy-Schwarz:
+    \begin{equation*}
+        |U|\leq\int_z|U_z|dz\leq A^{1/2}(|X_z||Y_z|)^{1/2}\leq A^{1/2}\left(\int_z|X_z| \right)^{1/2}\left(\int_z|Y_z| \right)^{1/2}\leq(ABC)^{1/2}
+    \end{equation*}
+\end{proof}
+As an immediate corollary, if we consider the boundary of $U$, because the projection to any plane is $\leq |\partial U|$ (as if you are mapping the whole surface out, which is ``maximal'' projection)
+\begin{equation*}
+    |U|\leq |\partial U|^{3/2}
+\end{equation*}
+
+\subsection{Tubes in different directions}
+We first introduce the theorem that connects projections and incidence geometry.
+\begin{theorem}[Loomis-Whitney]
+    For $j=1,..., n$, define $f_j:\R^{n-1}\to R^+$, and $\pi_j: R^n\to\R^{n-1}$, and the projection by forgetting about the j-th coordinate, then we have
+    \begin{equation*}
+        \int_{\R^n}\prod_{j=1}^n(f_j\circ\pi_j)^{\frac{1}{n-1}}\leq\prod_{j=1}^n\left(\int_{R^{n-1}}f_j\right)^{\frac{1}{n-1}}
     \end{equation*}
 \end{theorem}
 
-Now we define the dual of $\theta$, denoted by $\theta^*=\{x\in\R^n: |\omega-\omega_\theta|<\frac{1}{x}, \forall\omega\in\theta\}$, with $\omega_\theta$ being the center of $\theta$.
+Now we look at an example, $U\subset\R^n$ is a bounded region and $f_j=\chi_{\pi_j(U)}$ be the characteristic function of $\pi_j(U)$ and Loomis Whitney guarantees that we have,
+\begin{equation*}
+    |U|\leq\prod_{j=1}^n(|\pi_j(U)|)^{\frac{1}{n-1}}
+\end{equation*}
 
+$l_{j,a}\subset\R^n$ to be lines that are parallel to $x_j$-axis for $1\leq j\leq n$, and $1\leq a\leq N_j$. Let $T_{j,a}$ be the characteristic function of the 1-nbd of $l_{j,a}$. Surprisingly, we can provide some estimates on how these $T_{j,a}$ intersect.
 
-Now we look at how these are $\widehat{\phi}$ behaves on $\theta*$ and then rapidly decaying. 
+\begin{proposition}[parallel case]
+    Let everything be defined as above,i.e. when all lines are parallel to the axis, we have
+    \begin{equation*}
+        \int_{\R^n}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim \prod_{j=1}^nN_j^{\frac{1}{n-1}}
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    We need to define the $\pi_j, f_j$'s. Let $\pi_j$ be forgetting the $j$-th coordinate, and let $f_j=\sum_{a=1}^{N_j}\chi_{D_{j,a}}$, where $D_{j,a}$ denotes the disk of radius 1, with center where $l_{j,a}$ intersects $R^{n-1}$ with $j$-th axis removed $(l_{j,a}\cap\R^{n-1})$. Thus we have $\sum_{a=1}^{N_j}T_{j,a}=f_j\circ\pi_j$, hence we have
+    \begin{equation*}
+        \int_{\R^n}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}=\int_{\R^n}\prod_{j=1}^n\left(f_j\circ\pi_j\right)^{\frac{1}{n-1}}\leq \prod_{j=1}^n\left(\int_{\R^{n-1}}f_j\right)^{\frac{1}{n}}=\prod_{j=1}^n\left(\int_{\R^{n-1}}\sum_{a=1}^{N_j}\chi_{D_{j,a}}\right)^{\frac{1}{n-1}}\lesssim \prod_{j=1^n}N_j^{\frac{1}{n-1}}
+    \end{equation*}
+\end{proof}
+Where the last inequality follows from equality holds only when $D_{j,a}$ have no intersections/overlaps. 
+
+\begin{example}
+    Now we look at a cube of side length $s$, then for each direction $j$, its ``area'' is $s^{n-1}$, hence the number of tubes for each $j$ is $s^{n-1}$. And and 
+    \begin{equation*}
+        \sum_{a=1}^{N_j}T_{j,a}=1 \text{ on } E, 0 \text{ elsewhere }
+    \end{equation*}
+\end{example}
+Hence we have the LHS of Loomis-Whitney inequality as
+\begin{equation*}
+    LHS\sim\int_{Q_s}1=s^n, RHS=\prod_{j=1}^nN_j^{\frac{1}{n-1}}=s^n
+\end{equation*}
+This means the inequality in the proposition is quite sharp.
+
+Now we investigate the case where $l_{j,a}$ are not parallel to the $x_j$-axis, but rather are with an angle no larger than $\frac{1}{100n}$, and will the bound using Loomis-Whitney in the previous proposition still hold? With a simple picture, the answer is yes in $\R^2$.
+\begin{equation*}
+    \int_{\R^2}\sum_{a=1}^{N_1}T_{1,a}\sum_{b=1}^{N_2}T_{2,b}=\sum_{a=1}^{N_1}\sum_{b=1}^{N_2}\int_{\R^2}T_{1,a}\cdot T_{2,b}\lesssim N_1N_2
+\end{equation*}
+The last inequality follows from the fact that the product of $T_{1,a}\cdot T_{2,b}$ is equal to 1 in an area that may be slightly larger than 1 (going at different angles). The same inequality would hold if we replace lines with curves, and denote the angle at a given point $x\in\gamma_{j,a}$ to be the angle between the tangent line and the $x_j$-axis and have that less than $\delta$. However, the result is incorrect in $n=3$ for cuves, but there is a good result about tilting lines by Bennett-Carbery-Tao in 2005.
+
+\begin{theorem}[Bennett-Carbery-Tao, 2005]
+    Let $l_{j,a}$ be lines in $\R^n$ with an angle between $l_{j,a}$ and the $x_j$-axis no larger than $\frac{1}{100n}$. Let $T_{j,a}$ be the characteristic function of 1-neighborhood of $l_{j,a}$ (i.e. a tube of radius 1), then suppose $Q_s$ is a cube of side length $s$, then for any $\epsilon>0$, we have
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
+    \end{equation*}
+\end{theorem}
+In other words, the inequality of Loomis-Whitney holds in $\R^n$ but with an $s^\epsilon$ loss.
+
+We introduce the main lemma that is used to prove this theorem.
+\begin{lemma}[Main lemma]
+    For any $\epsilon>0$, there exists $\delta>0$ such that if all angles between $l_{j,a}$ and the $x_j$-axis are no larger than $\delta$, then we have
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
+    \end{equation*}
+\end{lemma}
+We now prove how the main lemma implies the Theorem above. First we note that the angle between lines are no larger than $1/100n$, which is not our any $\delta>0$. But we can decompose the area on $S^{n-1}$ that are formed by points of lines going through the origin that are within $1/100n$ from the $x_j$-axis.
+
+For each $j$, denote the area on the unit sphere $S^{-1}$ that is formed by points of lines $l_{j,a}$ of angle with $x_j$-axis no larger than $1/100n$, $S_j$, then we decompose $S_j$ into smaller portions of $S_j=\bigcup_b S_{j,b}$, where $S_{j,b}$ denotes the area that have diameter no larger than $\delta/10$ hence the angle that $S_j$ subtended is less than $\delta$. In $n=3$, there would be $S_1, S_2, S_3$. We further note that $e_j$ lives on $S^{n-1}$ and is the center of each $S_j$. Note that if for all $b$ $S_{j,b}$ is centered at $e_j$, then all lines are no more than $\delta$ from the $x_j$-axis, then we would have
+
+If we denote $g_j=\sum_{a=1}^{N_j}T_{j,a}$, and denote $g_{j,b}$ as those if we pick out those in $S_{j,b}$, then $g=\sum_{b}g_{j,b}$.
+
+Then in the theorem, we have
+\begin{equation*}
+    \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}=\int_{Q^s}\prod_{j=1}^n\left(\sum_bg_{j,b}\right)^{\frac{1}{n-1}}\leq\sum_b\int_{Q^s}\prod_{j=1}^n g_{j,b}^{\frac{1}{n-1}}\lesssim \int_{Q^s}\prod_{j=1}^ng_{j,b}^{\frac{1}{n-1}}
+\end{equation*}
+The last inequality follows from the constant depends on $n, \delta$. Now to use the lemma, we note that if all $g_{j,b}$ are centered at $e_j$, then all lines are within $\delta$ of $x_j$-axis, but this is not the case. However, if one applies a linear transformation, the determinant is controlled by $\delta$, heence by an epsilon loss. Hence applying the lemma, we get
+\begin{equation*}
+    \int_{Q^s}\prod_{j=1}^ng_{j,b}^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
+\end{equation*}
+
+We now attempt to prove the main lemma now, and we do so by looking at a cube of size $s\leq\delta^{-1}$ and cutting it up into smaller cubes, and getting a good bound on the smaller ones, and finally rescaling $s\leq\delta^{-1}$ to $\leq\delta^{-m}$ for any large $m$. 
+
 \begin{lemma}
-    If $\phi_\theta$ is a smooth bump function supported in $\theta$, then $\check{\phi_\theta}\sim|\theta|$ on $\theta^*|$ and rapidly decaying outside of it.
+    Let $s\leq\delta^{-1}$, then we have
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim \prod_{j=1}^nN_j(Q_s)^{\frac{1}{n-1}}
+    \end{equation*}
+    where $N_j(Q_s)=\{a: l_{j,a}\cap Q_s\neq\emptyset \}$, i.e. it is no larger than $N_j$.
 \end{lemma}
 \begin{proof}
-    If $\phi_\theta$ lives on $\theta$, we calculate its inverse Fourier transform to find the corresponding function in the physical space. 
+    Since we can get a good bound on parallel case, we note that for each $T_{j,a}$, since $s\leq\delta^{-1}$, we can find $\tilde{T}_{j,a}$ suhc that $T_{j,a}\subset\tilde{T}_{j,a}$, and we use the same $\tilde{T}_{j,a}$ to denote its characteristic function. Hence we have,
     \begin{equation*}
-        |\check{\phi_\theta}|=\left|\int e^{2\pi ix\omega}\phi_\theta(\omega)d\omega \right|=\left|e^{2\pi ix\omega_\theta}\int e^{2\pi ix(\omega-\omega_\theta)}\phi_\theta(\omega)d\omega \right|=\left|\int_\theta e^{2\pi ix(\omega-\omega_\theta)} \right| \sim |\theta|
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}\tilde{T}_{j,a}\right)^{\frac{1}{n-1}}\lesssim \prod_{j=1}^nN_j(Q_s)^{\frac{1}{n-1}}
     \end{equation*}
-    If $x\in\theta^*$, then we know $|(\omega-\omega_\theta)x|<1$, hence the oscillatory integral on the right hand side does not get too much cancellation, hence $|\check{\phi_\theta}|\sim|\theta|$, while outside of $\theta^*$, if one integrate by parts many times, then get rapid decay.
+    where the last inequality follows from the parallel proposition.
 \end{proof}
-\begin{remark}
-    This lemma shows why the dual $\theta^*$ is called the dual, i.e., if we consider functions first in the Fourier space, then we can find the corresponding $\theta^*$ such that $\check{\phi_\theta}$ is located and the size of it. Moreover, 
-    \begin{equation*}
-        \check{\phi_\theta} \text{ roughly looks like } e^{2\pi i x\omega_\theta}|\theta|\chi_{\theta^*}
-    \end{equation*}
-\end{remark}
 
-Based off of the smooth bump function in the Fourier space, we now consider its translation $check{\phi_\theta}(x-x_0)$ and the sum $\sum a_k\check{\phi_\theta}(x-x_0)$. Recall the locally constant lemma in lecture 2 states that if we consider the a function $f$ whose Fourier support $supp (\widehat{f})\subset I$, then we have the locally constant lemma which states $\|f\|_{L^\infty(I)}\lesssim \|f\|_{L^1(\omega_I)}$, where $\omega_I$ is 1 on $I$ and rapidly decays off of $I$. Here we present a similar result.
-
-\begin{lemma}[Locally Constant]
-    Suppose $f$ is such that $supp(\widehat{f})\subset\theta$, and $T$ is some translation of $\theta^*$, then the locally constant lemma holds on $T$ as well, namely,
+Then we consider smaller cube that are inside this cube. First we introduce the ``thickening'' of tubes, define $T_{j,a,w}$ to be the $w$ neighborhood of line $l_{j,a}$, namely, when $w=1, T_{j,a,1}=T_{j,a}$. This allows us to look at ``thick'' tubes and have them contain smaller ones.
+\begin{lemma}
+    Let $\frac{1}{20n}\delta^{-1}\leq s\leq\frac{1}{10n}\delta^{-1}$, then we have
     \begin{equation*}
-        \|f\|_{L^\infty(T)}\lesssim \|f\|_{L^1(\omega_T)}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim_n \delta^n\int_{Q^s}\prod_{j=1}^n \left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-1}} \right)^{\frac{1}{n-1}}
     \end{equation*}
-    where the $L^1$ norm here is the average $L^1$ norm.
 \end{lemma}
 \begin{proof}
-    Just like how we proved the unit interval case, we define a smooth bump function in the Fourier space that captures $f$. Let $\eta$ bu such that it is 1 on $\theta$ and decays rapidly outside of $\theta$, $|\eta(\omega)|\leq\left(\frac{1}{1+|\omega|} \right)^M$, for all large $M$. Then we have $\widehat{f}=\eta\widehat{f}$, hence \begin{equation*}
-        |f(x)|\leq\sup_{x\in T}\int|f(y)\check{\eta}(x-y)|dy\leq \int|f(y)|\sup_{x\in T}|\check{\eta}(x-y)|dy
+    By the previous lemma, it suffices to show that 
+    \begin{equation*}
+        \prod_{j=1}^nN_j(Q_s)^{\frac{1}{n-1}}\lesssim \delta^n\int_{Q^s}\prod_{j=1}^n \left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-1}} \right)^{\frac{1}{n-1}}
     \end{equation*}
-    As we noted above, $|\check{\eta}|\sim |\theta|=\frac{1}{|\theta^*|}$ on $\theta^*$ and decays rapidly off of it. And we note $\omega_T(y)=\sup_{x\in T}\check{\eta}(x-y)$ also behaves on $T$ like this.
+    We note that if $s\leq\frac{1}{10n}\delta^{-1}$, then if $T_{j,a}\cap Q_s\neq\emptyset$, then we have $T_{j,a,\delta^{-1}}=1$ on $Q_s$, since $T_{j,a,\delta^{-1}}$ is simply a large, fat tube that contains $Q_s$. Hence we have, on $Q_s$, 
+    \begin{equation*}
+        N_j(Q_s)\leq\sum_{a=1}^{N_j}T_{j,a,\delta^{-1}}
+    \end{equation*}
+    Moreover, because $s\leq\frac{1}{10n}\delta^{-1}$, we have $|Q_s|\lesssim\delta^{-n}$, thus obtaining the inequality. And by the same reasoning, we have
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-(m-1)}}\right)^{\frac{1}{n-1}}\lesssim_n \delta^n\int_{Q^s}\prod_{j=1}^n \left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-m}} \right)^{\frac{1}{n-1}}
+    \end{equation*}
+    And by inducting on $m$, we get
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq C(n)^m \delta^{nm}\int_{Q^s}\prod_{j=1}^n \left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-m}} \right)^{\frac{1}{n-1}}
+    \end{equation*}
 \end{proof}
 
-Let's now get in business. Consider single wavepackets $f_\theta$, a wave packet is the inverse Fourier transform of a bump function in the Fourier space, for example, $f_\theta=\check{\eta}$, where $\eta(omega)=1$ on $\theta$ and decays rapidly off of it. Here we consider these wave packets normalized as $f_\theta(0)=1$, let $f=\sum_\theta f_\theta$.
-
-Then in a small neighborhood of $0$, where not much cancellation can happen, we have $|f(0)|$ equals the number of $\theta$, which is $R^{(n-1)/2}$. Hence the $L^p$ norm of $f$.
+Now we connect the above two lemmas.
+\begin{proposition}
+    Let $s\leq\delta^{-1}$, then we have
+    \begin{equation*}
+        \int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq C(n)\delta^n\int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-1}} \right)^{\frac{1}{n-1}}
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+This essentially follows from cutting $Q_s$ up into smaller cubes of the form in the previous lemma and use the lemma. Let $Q_s=\sum_bQ_{s,b}$,
 \begin{equation*}
-    \|f\|_{L^p}\geq \|f\|_{B_1}\gtrsim R^{(n-1)/2}
+    \int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}=\sum_b\int_{Q_{s, b}}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq C(n)\delta^n\sum_b\int_{Q_{s,b}}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a, \delta^{-1}}\right)^\frac{1}{n-1}
 \end{equation*}
-
-And now we consider the RHS of the decoupling relation, which is the $L^p$ norm of each wave packet, that is $f_\theta$. Because $\widehat{f_\theta}$ is supported in $\theta$ and $f_\theta$ is normalized, hence $f_\theta$ is 1 on $\theta^*$ and decays rapidly off of it. Hence,
+with the RHS $=C(n)\delta^n\int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a, \delta^{-1}}\right)^\frac{1}{n-1}$. And by the same reasoning, going along with what happened right before this proposition, for arbitrary large $m$, and a cube with $s\leq\delta^{-m}$, we have
 \begin{equation*}
-    \|f\|_{L^p}\sim |\theta^*|^{1/p}=R^{(n+1)/(2p)}
+    \int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\leq C(n)^m\delta^{nm}\int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a,\delta^{-m}} \right)^{\frac{1}{n-1}}
 \end{equation*}
-Hence we have,
+\end{proof}
+
+Finally, we have all the tools to prove the main lemma, i.e. there always exists $\delta>0$ such that
 \begin{equation*}
-    \left(\sum_\theta\|f\|_{L^p}^2\right)^{1/2}\sim R^{\frac{n-1}{4}+\frac{n+1}{2p}}
+    \int_{Q_s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
 \end{equation*}
-Combining, we have $R^{(n-1)/2}\lesssim D_p R^{\frac{n-1}{4}+\frac{n+1}{2p}}$, hence $D_p\gtrsim R^{\frac{n-1}{4}-\frac{n+1}{2p}}$. And Bourgain and Demeter claim up to an $R^\epsilon$ loss, this is the worst that can happen.
-
-\begin{theorem}[Bourgain and Demeter]
-    $D_p(R)\lesssim R^\epsilon \max\{R^{\frac{n-1}{4}-\frac{n+1}{2p}},1\}$
-\end{theorem}
-
+\begin{proof}
+    Note that $\sum_{a=1}^{N_j}T_{j,a,\delta^{-m}}\leq N_j$, and $|Q_s|\leq \delta^{-nm}$, hence it suffices to choose $C(n)\leq s^\epsilon$. We note that
+    \begin{equation*}
+        C(n)^m\leq C(n)^{\frac{\log s}{-\log(\delta)}}=s^{\frac{\log C(n)}{-\log\delta}}
+    \end{equation*}
+    Hence it suffices to choose $\delta$ small enough such that $\frac{\log C(n)}{-\log\delta}\leq\epsilon$ as required.
+\end{proof}
+\qed
