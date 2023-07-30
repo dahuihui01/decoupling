@@ -40,8 +40,8 @@ Now we look at an example, $U\subset\R^n$ is a bounded region and $f_j=\chi_{\pi
 
 $l_{j,a}\subset\R^n$ to be lines that are parallel to $x_j$-axis for $1\leq j\leq n$, and $1\leq a\leq N_j$. Let $T_{j,a}$ be the characteristic function of the 1-nbd of $l_{j,a}$. Surprisingly, we can provide some estimates on how these $T_{j,a}$ intersect.
 
-\begin{proposition}
-    Let everything be defined as above, we have
+\begin{proposition}[parallel case]
+    Let everything be defined as above,i.e. when all lines are parallel to the axis, we have
     \begin{equation*}
         \int_{\R^n}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim \prod_{j=1}^nN_j^{\frac{1}{n-1}}
     \end{equation*}
@@ -78,4 +78,39 @@ The last inequality follows from the fact that the product of $T_{1,a}\cdot T_{2
         \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
     \end{equation*}
 \end{theorem}
-In other words, the inequality of Loomis-Whitney holds with an 
+In other words, the inequality of Loomis-Whitney holds in $\R^n$ but with an $s^\epsilon$ loss.
+
+We introduce the main lemma that is used to prove this theorem.
+\begin{lemma}[Main lemma]
+    For any $\epsilon>0$, there exists $\delta>0$ such that if all angles between $l_{j,a}$ and the $x_j$-axis are no larger than $\delta$, then we have
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
+    \end{equation*}
+\end{lemma}
+We now prove how the main lemma implies the Theorem above. First we note that the angle between lines are no larger than $1/100n$, which is not our any $\delta>0$. But we can decompose the area on $S^{n-1}$ that are formed by points of lines going through the origin that are within $1/100n$ from the $x_j$-axis.
+
+For each $j$, denote the area on the unit sphere $S^{-1}$ that is formed by points of lines $l_{j,a}$ of angle with $x_j$-axis no larger than $1/100n$, $S_j$, then we decompose $S_j$ into smaller portions of $S_j=\bigcup_b S_{j,b}$, where $S_{j,b}$ denotes the area that have diameter no larger than $\delta/10$ hence the angle that $S_j$ subtended is less than $\delta$. In $n=3$, there would be $S_1, S_2, S_3$. We further note that $e_j$ lives on $S^{n-1}$ and is the center of each $S_j$. Note that if for all $b$ $S_{j,b}$ is centered at $e_j$, then all lines are no more than $\delta$ from the $x_j$-axis, then we would have
+
+If we denote $g_j=\sum_{a=1}^{N_j}T_{j,a}$, and denote $g_{j,b}$ as those if we pick out those in $S_{j,b}$, then $g=\sum_{b}g_{j,b}$.
+
+Then in the theorem, we have
+\begin{equation*}
+    \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}=\int_{Q^s}\prod_{j=1}^n\left(\sum_bg_{j,b}\right)^{\frac{1}{n-1}}\leq\sum_b\int_{Q^s}\prod_{j=1}^n g_{j,b}^{\frac{1}{n-1}}\lesssim \int_{Q^s}\prod_{j=1}^ng_{j,b}^{\frac{1}{n-1}}
+\end{equation*}
+The last inequality follows from the constant depends on $n, \delta$. Now to use the lemma, we note that if all $g_{j,b}$ are centered at $e_j$, then all lines are within $\delta$ of $x_j$-axis, but this is not the case. However, if one applies a linear transformation, the determinant is controlled by $\delta$, heence by an epsilon loss. Hence applying the lemma, we get
+\begin{equation*}
+    \int_{Q^s}\prod_{j=1}^ng_{j,b}^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^nN_j^{\frac{1}{n-1}}
+\end{equation*}
+
+We now attempt to prove the main lemma now, and we do so by looking at a cube of size $s\leq\delta^{-1}$ and cutting it up into smaller cubes, and getting a good bound on the smaller ones, and finally rescaling $s\leq\delta^{-1}$ to $\leq\delta^{-m}$ for any large $m$. 
+
+\begin{lemma}
+    Let $s\leq\delta^{-1}$, then we have
+    \begin{equation*}
+        \int_{Q^s}\prod_{j=1}^n\left(\sum_{a=1}^{N_j}T_{j,a}\right)^{\frac{1}{n-1}}\lesssim \prod_{j=1}^nN_j(Q_s)^{\frac{1}{n-1}}
+    \end{equation*}
+    where $N_j(Q_s)=\{a: l_{j,a}\cap Q_s\neq\emptyset \}$, i.e. it is no larger than $N_j$.
+\end{lemma}
+\begin{proof}
+    Since we can get a good bound on 
+\end{proof}
