@@ -1,0 +1,69 @@
+\section*{Lecture 5}
+
+It's okay. we can make this work.
+We will see how one can use multilinear restriction kakeya conjecture towards the restriction theory. More specifically, we will try and see how one can say about the size of $f$ given that $supp(\widehat{f}\subset\Omega)$, and knowing the ``geometry'' of $\Omega$.
+
+We use $f=E\phi$ to denote $f=\int e^{2\pi ix\omega}\phi(\omega)d\omega$, then if $f=E_\Omega\phi$, then $supp(\widehat{f})\subset\Omega$.
+
+Let's go back to a previous example, where $\theta\subset S^{-1}$ is a $R^{-1/2}$-cap on the unit sphere in $\R^n$. Let $\phi_\theta$ be a smooth bump funciton on $\theta$, $\|\phi\|_{L^p}\sim|\theta|^{1/p}\sim R^{\frac{-(n-1)}{2p}}$, then we have
+\begin{equation*}
+    |E\phi_\theta(x)|\sim|\theta|\sim R^{\frac{-(n-1)}{2}} \text{ on } \theta^*
+\end{equation*}
+Hence
+\begin{equation*}
+    \|E\phi_\theta\|_{B_R}\sim R^{\frac{-(n-1)}{2}+\frac{n+1}{2p}}
+\end{equation*}
+
+We will now consider the entire $S^{-1}$ and dissect it into spherical caps $\theta$ of size $R^{-1/2}$ as above, then the number $\theta$'s is $R^{\frac{n-1}{2}}$. Then let $\phi$ be constant 1 on $S^{-1}$, and let $\phi=\sum_\theta\phi_\theta$ (each $\phi_\theta)$ is the wave packet like above. If we let $B$ denote where every $\theta^*$ intsersect and have small frequency change, then $|E\phi|\sim\sum_\theta|E\phi_\theta|\sim R^{-(n-1)/2}\cdot R^{(n-1)/2}=1$ on $B$, but outside of $B$ and places where there are many intersections of $\theta^*$'s, say, $B_R\setminus B_{R/2}$, we have $|E\phi(x)|\sim|\theta|=R^{-(n-1)/2}$ on $B_R\setminus B_{R/2}$. To sum up, $|E\phi_\theta|\sim 1$ where all $\theta^*$'s intsersect and die off as you move away from the center. Hence the larger the $p$, the more focus on the higher values, hence we have, by interpolation,
+\begin{equation*}
+    \|E\phi\|_{L^p(B_R)}\sim\begin{cases}
+        1, \text{ for } p>\frac{2n}{n-1}\\
+        R^{\frac{-(n-1)}{2}}|B_R|^{1/p}=R^{\frac{-(n-1)}{2}-\frac{n}{p}}, p<\frac{2n}{n-1}
+    \end{cases}
+\end{equation*}
+What does the above example of wave packets on $S^{n-1}$ tell us? Recall $\|\phi_\theta\|_{L^q}\sim R^{\frac{-(n-1)}{2q}}$, and the conjecture is that we can control the size of $\|E\phi\|_{L^p(B_R)}$ using the size of $\|\phi\|_{L^q}$. The conjecture is as follows:
+\begin{equation*}
+    \frac{\|E\phi\|_{L^p(B_R)}}{\|\phi\|_{L^q}}\lesssim R^\epsilon
+\end{equation*}
+For $q=2$, we have Tomas-Stein,
+\begin{theorem}[Tomas-Stein]
+    If $p\geq\frac{2(n+1)}{n-1}$, then $\|E\phi\|_{L^p(B_R)}\lesssim \|\phi\|_{L^2}$
+\end{theorem}
+And this gives one end of the range to put on $q$, and Stein conjectures the other end:
+\begin{equation*}
+    \|E\phi\|_{L^p(B_R)}\lesssim \|\phi\|_{L^\infty}, p>\frac{2n}{n-1}
+\end{equation*}
+Note: Only $n=2$ has been proven. Here we will us the wave packet approach. If we let $S^{n-1}=\bigcup\theta$, where $\theta$ are $R^{-1/2}$ caps, and let $\phi=\sum\phi_\theta$. By the Locally Constant Lemma, we have
+\begin{equation*}
+    |E\phi(x)|\sim \text{ constant on } T
+\end{equation*}
+where $T$ are translates of $\theta^*$. Hence, if we add things up ``horizontally'' like this, then we have
+\begin{equation*}
+    |E\phi(x)|\sim\sum_T a_T\chi_T
+\end{equation*}
+where $T$ are parallel to $\theta^*$ and are disjoint.
+
+By Plancherel identity, we have
+\begin{equation*}
+    \|E\phi\|_{L^2}=\|\phi\|_{L^2}
+\end{equation*}
+which means
+\begin{equation*}
+    \sum a_T^2\sim\|\phi\|_{L^2}^2\leq\sum_\theta\|\phi_\theta\|_{L^2}^2\sim R^{\frac{n-1}{2}}\|\phi_\theta\|_{L^2}^2
+\end{equation*}
+
+To prove the decoupling, we have to look at how the tubes $T$ (which are translates of $\theta^*$) intersect. For each $B_{R^{1/2}}$, we define
+\begin{equation*}
+    \mu(B_R^{1/2}=\sum_{T\cap B_{R^{1/2}}\neq\emptyset}a_T^2
+\end{equation*}
+The Kakeya problem concerns with how many $B_{R^{1/2}}$ such that $\mu\sim 2^k$ for some $k$. The next thing we will do is to estimate $\|E\phi\|_{L^p(B_R)}$.
+
+\begin{proposition}
+    The inverse Fourier transform of characteristic functions $\check{\chi_\theta}$ doesn't decay fast. 
+\end{proposition}
+\begin{proof}
+\begin{equation*}
+    \check{\phi}(x)=\int\phi(\omega)e^{2\pi ix\omega}d\omega=\int_E\phi(\omega)e^{2\pi ix\omega}d\omega=\left.\frac{e^{2\pi ix\omega}}{2\pi ix}\right\vert_E
+\end{equation*}
+\end{proof}
+
