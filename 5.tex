@@ -54,16 +54,42 @@ which means
 
 To prove the decoupling, we have to look at how the tubes $T$ (which are translates of $\theta^*$) intersect. For each $B_{R^{1/2}}$, we define
 \begin{equation*}
-    \mu(B_R^{1/2}=\sum_{T\cap B_{R^{1/2}}\neq\emptyset}a_T^2
+    \mu(B_R^{1/2})=\sum_{T\cap B_{R^{1/2}}\neq\emptyset}a_T^2
 \end{equation*}
 The Kakeya problem concerns with how many $B_{R^{1/2}}$ such that $\mu\sim 2^k$ for some $k$. The next thing we will do is to estimate $\|E\phi\|_{L^p(B_R)}$.
 
-\begin{proposition}
-    The inverse Fourier transform of characteristic functions $\check{\chi_\theta}$ doesn't decay fast. 
-\end{proposition}
-\begin{proof}
-\begin{equation*}
-    \check{\phi}(x)=\int\phi(\omega)e^{2\pi ix\omega}d\omega=\int_E\phi(\omega)e^{2\pi ix\omega}d\omega=\left.\frac{e^{2\pi ix\omega}}{2\pi ix}\right\vert_E
-\end{equation*}
-\end{proof}
+We now state two versions of multilinear restriction that we will give sketches/proofs for. Recall we define $f_j=E\phi_j$ to be the extension operator, i.e., taking the inverse Fourier transform.
+\begin{theorem}[Multilinear Kakeya, first version]
+    Let $\Sigma_j$ be spherical caps that are $\frac{1}{100n}$-neighborhood of $e_j$. Let $\phi_j:\Sigma_j\to\mathbb{C}$ and $f_j=E\phi_j$, then we have
+    \begin{equation*}
+        \|\prod_j|E\phi_j|^{\frac{1}{n}} \|_{L^p(B_R)}\lesssim R^\epsilon\prod_j\|\phi_j\|_{L^2}^{\frac{1}{n}}
+    \end{equation*}
+\end{theorem}
+The first version of the restriction concerns with how to control the size of $E\phi_j$ using bounds on $\|\phi_j\|$. And now the second version of the multilinear problem concerns with how we control the size of $E\phi_j$ using $E\phi_j$.
 
+\begin{theorem}[Multilinear restriction, second version]
+    Suppose $\Sigma_1, \Sigma_2, ..., \Sigma_n$ are $C^2$ hyperspaces in $\R^n$, with diameter $\leq 1$ and $|curvature|\lesssim 1$, then if the angle between any the normal vector of $\omega_j\in\Sigma_j$ at $\omega_j$ and $e_j$ are $\leq\frac{1}{100n}$. Let $f_j=E\phi_j$, we have support $supp\widehat{f}_j\subset N_{1/k}\Sigma_j$. Then we have, for $p=\frac{2n}{n-1}$, 
+    \begin{equation*}
+        \|\prod_j|f_j|^{\frac{1}{n}}\|_{L^p}\lesssim R^\epsilon\prod_{j=1}^n\|f_j\|_{\sout{L}^2(\omega_{B_R})}^{\frac{1}{n}}
+    \end{equation*}
+\end{theorem}
+We give the sketch of this using the lemmas that we already know. Consider a cover of $B_R$ using smaller balls of radisu $R^{1/2}$, i.e., $B_R=\bigcup\theta$, then by the local orthogonality lemma, we have
+\begin{equation*}
+    \|f_j\|_{L^p(B_{R^{1/2}})}^2\lesssim \sum_{\theta}\|f_{j,\theta}\|_{L^2(\omega_{B_{R_{1/2}}})}^2
+\end{equation*}
+And the ``white-lie'' version of this lemma would be to replace the inequality with roughly equal to.
+\begin{equation*}
+    \|f_j\|_{L^p(B_{R^{1/2}})}\sim\sum_\theta\|f_{j,\theta}\|_{L^2(\omega_{B_{R^{1/2}}})}
+\end{equation*}
+And we state something similar for the Locally Constant Lemma: let $T$ be a translation of $\theta^*$, for $x_1,x_2\in T$, we have
+\begin{equation*}
+    |f_{j,\theta}(x_1)|\sim|f_{j,\theta}(x_2)|
+\end{equation*}
+
+
+We now would like to prove the multilinear restriction, second version. Let's begin.
+\begin{proof}
+    We will begin with the LHS, $\int\prod_j|f_j|^{1/n\cdot2n/(n-1)}$, we would like to have $R^\epsilon\prod_j\|f_j\|_{L^2}^{\frac{2}{n-1}}$ on the RHS.
+    This we can do by using three key ingredientS: Local Constant Lemma, Local Orthogonality Lemma, and the Multilinear Kakeya estiamtes.
+
+\end{proof}
