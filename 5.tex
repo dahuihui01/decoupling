@@ -86,10 +86,19 @@ And we state something similar for the Locally Constant Lemma: let $T$ be a tran
     |f_{j,\theta}(x_1)|\sim|f_{j,\theta}(x_2)|
 \end{equation*}
 
-
-We now would like to prove the multilinear restriction, second version. Let's begin.
+We now would like to prove the multilinear restriction, second version. Let's begin. Here we use $B$ to denote $B_R$ and $B_{1/2}$ to denote $B_{R^{1/2}}$.
 \begin{proof}
     We will begin with the LHS, $\int\prod_j|f_j|^{1/n\cdot2n/(n-1)}$, we would like to have $R^\epsilon\prod_j\|f_j\|_{L^2}^{\frac{2}{n-1}}$ on the RHS.
-    This we can do by using three key ingredientS: Local Constant Lemma, Local Orthogonality Lemma, and the Multilinear Kakeya estiamtes.
-
+    This we can do by using three key ingredientS: Local Constant Lemma, Local Orthogonality Lemma, and the Multilinear Kakeya estiamtes. Here we go,
+    \begin{align*}
+        \int\prod_j|f_j|^{\frac{2}{n-1}}&\sim |average|\int_{B_{1/2}}\prod_j|f_j|^{\frac{2}{n-1}}\\
+        &\lesssim |a|R^{\frac{\epsilon n}{n-1}}\prod_j\|f_j\|_{L^\frac{2}{n-1}(B_{1/2})}\\
+        &=R^\epsilon |a|\left(\int_{B_{1/2}}\prod_j|f_j|^2\right)^{1/(n-1)}\\
+        &\sim |a|R^\epsilon\left(\int_{B_{1/2}}\prod_j\sum_\theta|f_{j,\theta}|^2\right)^{1/(n-1)}\\
+        &\sim |a|R^\epsilon\int_{B_{1/2}}\prod_j\left(\sum_\theta|f_{j,\theta}|^2\right)^{1/(n-1)}\\
+        &=R^\epsilon\int_B\prod_j\left(\sum_\theta|f_{j,\theta}|^2\right)^{(1/(n-1)}\\
+        &\sim R^\epsilon\prod_j\left(\int_B\sum_\theta|f_{j,\theta}|^2\right)^{\frac{1}{n-1}}\\
+        &\sim R^\epsilon\prod_j\left(\|f_j\|_{L^2}^2 \right)^{\frac{1}{n-1}}
+    \end{align*}
+    hence we are done!
 \end{proof}
