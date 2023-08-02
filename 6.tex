@@ -1,5 +1,24 @@
 \section*{Lecture 6}
 We continue our discussion about multilinear restriction, and we gave a sketch of the proof for the second version, now we turn to the first version. (remember, the restriction conjecture concerns with bounding the size of $\|E\phi\|_{L^p}$ using $\|\phi\|$).
+
+We now look at the idea of ``tiling'' going from the fourier space to the physical space. If we know a function whose fourier transform is supported on a region, can we disect the region, and look at the dual rectangles/tubes, and how they intersect, to bound the size of the original function $f$. To achieve, we need to familiarize ourselves with the idea of induction on scale.
+
+Let's reiterate our multilinear restriction theorem.
+\begin{theorem}[Multilinear restriction]
+\begin{equation*}
+    \left\|\prod_{j=1}^n |f_j|^{1/n} \right\|_{L_{avg}^p}(B_R)\leq R^\epsilon\prod_{j=1}^n\left(\|f_j\|_{L_{avg}^2(\omega B_R)} \right)^{1/n}
+\end{equation*}
+where $p=2n/(n-1)$.
+\end{theorem}
+Let's first denote $\Sigma_1, ..., \Sigma_n$ as hypersurfaces in $\R^n$, and then decompose $N_{1/R}\Sigma_j$ into disjoint unions os $R^{-1/2}$-caps $\theta$. Thus, we have $f_{j,\theta}$ as the restriction of $f$ whose fourier transform is supported on $\theta$ of $\Sigma_j$. The dimension of the $R^{-1/2}$ cap  $\theta$ is $R^{-1/2}\times R^{-1/2}\times...\times R^{-1/2}\times R$, so its dual tube $\theta^*$ has dimension $R^{1/2}\times...\times R^{1/2}\times R$. We know $|f_{j,\theta}$ is roughly constant on each $\theta^*$, as well as the translation of $\theta^*$, the tubes $T$'s. If we reexamine the multilinear restriction, then we get the LHS is estimating how the tubes overlap and the bound that we can obtain on the size the overlaps.
+
+Now we introduce the induction on scales idea. If we consider a bigger region in the fourier space, that corresponds to a smaller region in the physical space. Hence, if we consider a fatter cap $R^{-1/4}$ cap $\tau$, and denote $f_\tau=\sum_{\theta\subset\tau}f_{j,\theta}$, then if we look at the dual $\tau^*$, it is a smaller tube enclosed in the intersection of $T$'s and has dimension $R^{1/4}\times...\times R^{1/4}\times R$. How $\tau^*$'s intersect tells us how energy is distributed/concentrated on these tubes.
+
+We apply lcoal orthogonality to $\theta\subset\tau$. 
+\begin{equation*}
+    \|f_{j,\tau}\|_{L^2(B_{R_{1/2}}}^2\lesssim \sum_{\theta\subset\tau}\|f_{j,\theta}\|_{L^2(\omega)}^2
+\end{equation*}
+
 \begin{proposition}
     The inverse Fourier transform of characteristic functions $\check{\chi_\theta}$ doesn't decay fast. 
 \end{proposition}
