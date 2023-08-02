@@ -67,6 +67,17 @@ We now state two versions of multilinear restriction that we will give sketches/
 \end{theorem}
 The first version of the restriction concerns with how to control the size of $E\phi_j$ using bounds on $\|\phi_j\|$. And now the second version of the multilinear problem concerns with how we control the size of $E\phi_j$ using $E\phi_j$.
 
+\begin{theorem}[Multilinear Kakeya]
+    If $T_{j,a}$ is a characteristic function of 1-neighborhood of line $l_{j,a}$ and the angle between $l_{j,a}$ and $x_j$-axis is no more than $\frac{1}{100n}$, then we have
+    \begin{equation*}
+        \int_{Q^s}\prod_j\left(\sum_{a=1}^{N_j}T_{j,a} \right)^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_jN_j^{\frac{1}{n-1}}
+    \end{equation*}
+    Hence if we have $g_j=\sum_{a=1}^{N_j}T_{j,a}$, then we have
+    \begin{equation*}
+        \int_{Q^s}\prod_jg_j^{\frac{1}{n-1}}\lesssim s^\epsilon\prod_{j=1}^n\left(\int_{Q_s}g_j\right)^{\frac{1}{n-1}}
+    \end{equation*}
+\end{theorem}
+
 \begin{theorem}[Multilinear restriction, second version]
     Suppose $\Sigma_1, \Sigma_2, ..., \Sigma_n$ are $C^2$ hyperspaces in $\R^n$, with diameter $\leq 1$ and $|curvature|\lesssim 1$, then if the angle between any the normal vector of $\omega_j\in\Sigma_j$ at $\omega_j$ and $e_j$ are $\leq\frac{1}{100n}$. Let $f_j=E\phi_j$, we have support $supp\widehat{f}_j\subset N_{1/k}\Sigma_j$. Then we have, for $p=\frac{2n}{n-1}$, 
     \begin{equation*}
@@ -100,5 +111,6 @@ We now would like to prove the multilinear restriction, second version. Let's be
         &\sim R^\epsilon\prod_j\left(\int_B\sum_\theta|f_{j,\theta}|^2\right)^{\frac{1}{n-1}}\\
         &\sim R^\epsilon\prod_j\left(\|f_j\|_{L^2}^2 \right)^{\frac{1}{n-1}}
     \end{align*}
-    hence we are done!
+    and we are done!
 \end{proof}
+
