@@ -33,4 +33,26 @@ if energy of $f_{j,\tau}$ outside $B_{R^{1/2}}$ may contribute a lot after the c
 \end{proof}
 \qed
 
+The local orthogonality lemma lets us keep track of the size of the following expressions:
+\begin{equation*}
+    \sum|f_{j,\theta}(x)|^2, \sum|f_{j,\tau}(x)|^2, \sum_{bigger caps}|f_{j,\tau'}(x)|^2,..., \text{ until } \sum_{\Sigma_j}|f_{j,\Sigma_j}(x)|^2
+\end{equation*}
+We can think of $\sum|f_{j,\theta}(x)|^2$ as the energy density of $f_{j,\theta}$ and it concentrates on tubes ($T$) in the physical space. As we move to the right side, the tubes are getting finer and may move perpendicular to $x_j$-axis. Now we look at functions whose fourier support is precisely $\Sigma_j$.
+
+Now let's define an extension operator over $\Sigma$.
+\begin{definition}[Extension operator over $\Sigma$]
+    For any smooth $\phi(x)\in C^\infty(\Sigma)$, we define an extension operator on $\Sigma$ of $\phi$ is 
+    \begin{equation*}
+        E_\Sigma\phi(x)=\int_\Sigma e^{2\pi i\omega x}\phi(x)dvol_\Sigma(\omega)
+    \end{equation*}
+\end{definition}
+
+We restate the first version of the multilinear restriction.
+\begin{theorem}[Multilinear restriction, first version]
+\begin{equation*}
+    \left\|\prod_{j=1}^n|E_{\Sigma_j}\phi_j|^{1/n} \right\|_{L^p(B_R)}\leq R^\epsilon\prod_{j=1}^n\|\phi_j\|_{L^2(\Sigma_j)}^{1/n}
+\end{equation*}
+where $p=2n/(n-1)$
+\end{theorem}
+
 
