@@ -47,12 +47,143 @@ Now let's define an extension operator over $\Sigma$.
     \end{equation*}
 \end{definition}
 
-We restate the first version of the multilinear restriction.
+We restate the first version of the multilinear restriction, as well as its asusmptions, since they are important in our proof for the restriction conjecture in $n=2$ below. If $\tau$ are spherical caps of $\frac{1}{100n}$-nbd of $e_j$. Let $\phi_j: \Sigma_j\to\mathbb{C}$, and $f_j=E\phi_j$, then we have the following inequality.
 \begin{theorem}[Multilinear restriction, first version]
 \begin{equation*}
     \left\|\prod_{j=1}^n|E_{\Sigma_j}\phi_j|^{1/n} \right\|_{L^p(B_R)}\leq R^\epsilon\prod_{j=1}^n\|\phi_j\|_{L^2(\Sigma_j)}^{1/n}
 \end{equation*}
 where $p=2n/(n-1)$
 \end{theorem}
+Though not included in the restriction conjecture, we first prove the following:
+\begin{proposition}
+    \begin{equation*}
+        \|E\phi\|_{L^2(B_R)}\lesssim R^{1/2}\|\phi\|_{L^2}
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+This $L^2$ case is a lot simpler due to Plancherel. And we prove this by first proving the following lemma regarding integrating over hypersurfaces:
+\begin{lemma}
+    Let $\Pi$ be a hyperplane perpendicular to $e_j$, for some $j$, we then have
+    \begin{equation*}
+        \int_\Pi|E_j\phi|^2\sim\int_{\Sigma_j}|\phi|^2
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    We take $e_j$ to be $e_n$ for convenience. Then for $x\in\Pi$, we have $x=(x_1, ...,x_{n-1}, t)$ for fixed $t$ for all $x\in\Pi$. And $\Sigma_n$ is within a small neighborhood that is normal to $e_n$, hence we have for all $\omega\in\Sigma_n$, we have $\omega_n=h(\omega')=h(\omega_1,...\omega_{n-1})$. And because the integral operator integrates $dvol_{\Sigma_n(\omega)}$, let $J$ be the Jacobian determinant, we have
+    \begin{equation*}
+        dvol_{\Sigma_n}=Jd\omega'
+    \end{equation*}
+    And we would want to write $|E_j\phi|$ as a function or the fourier transform of a function to apply Plancherel. We have,
+    \begin{equation*}
+        E_{\Sigma_n}\phi(x)=\int_{\Sigma_n}e^{2\pi ix\omega}\phi(\omega)dvol_{\Sigma_n}(\omega)=\int_{\R^{n-1}}e^{2\pi ix'\omega'}e^{2\pi ith(\omega')}\phi(\omega')Jd\omega'
+    \end{equation*}
+    Then we define $g:\Sigma_n\to\mathbb{C}$ as $g(\omega')=e^{2\pi ith(\omega')}\phi(\omega')J$, then we have $E_{\Sigma_n}=\int e^{2\pi ix'\omega'}g(\omega')d\omega'=\check{g}$
+    Hence by Plancherel, we have 
+    \begin{equation*}
+        \int_\Pi|E_{\Sigma_n}\phi|^2=\int_\Pi|\check{g}|^2=\int_\Pi|g|^2=\int_\Pi|\phi|^2J^2\sim\int_PiJ|\phi|^2=\int_{\Sigma_n}|\phi|^2dvol_{\Sigma_n}
+    \end{equation*}
+\end{proof}
+\qed
+
+And this lemma directly implies our bound on $\|E\phi\|_{L^2}$ since the only think left for us to do is to integrate over $x_n$, i.e. 
+\begin{equation*}
+    \|E\phi\|_{L^2}^2=\int_{-R}^R\int_\Pi|E_j\phi|^2\sim\int_{-R}^R\int_{\Sigma_n}|\phi|^2\leq R\|\phi\|_{L_2(\Sigma)}^2
+\end{equation*}
+Taking the square root gives us $\|E\phi\|_{L^2(B_R)}\lesssim R^{1/2}\|\phi\|_{L^2}$.
+\end{proof}
+\qed
+
+We now restate our conjecture given our $p=2n/(n-1)$ from the restriction theorem. We expect
+\begin{equation*}
+    \|E\phi\|_{L^p(B_R)}\lesssim R^\epsilon\|\phi\|_{L^p(\Sigma)}
+\end{equation*}
+\begin{remark}
+    Note for a general conjecture, one can put $L^q(\Sigma)$ on the RHS, for all $p\leq q\leq\infty$. But any case where $q<p$ would have a counterexample using a single wave packet.
+\end{remark}
+We will now prove the case where $n=2, p=4$.
+\begin{theorem}
+    For $n=2$, and thus $p=4$, let $\Sigma=S^1$, the unit circle in $\R^2$. We have, 
+    \begin{equation*}
+        \|E\phi\|_{L^4(B_R)}\lesssim R^\epsilon\|\phi\|_{L^4}
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    This is a long one and we will introduce lemmas and definitions along the way, here we go. We first state how may one use the multilinear restriction theorem. Let $\Sigma=\bigcup\tau$, where $\tau$ are $1/K$ caps, and there are roughly $K$ $\tau$'s.
+    \begin{equation*}
+        \int|E\phi|^p=\int|\sum_\tau E\phi_\tau|^p=\int\prod_{j=1}^n|\sum_\tau E\phi_\tau|^{p/n}\leq\int\prod_{j=1}^n\sum_\tau|E\phi_\tau|^{p/n}K^{O(1)}=K^{O(1)}\sum_\tau\int\prod_{j=1}^n|E\phi_\tau|^{p/n}
+    \end{equation*}
+    The term on the RHS is where we can apply our multilinear restriction theorem, and we have to make sure our $\tau$'s are small neighborhoods of $e_j$. We translate the above equation in terms of $n=2$. 
+    \begin{equation*}
+        \int|E\phi|^4\leq K^{O(1)}\sum_{\tau_1,\tau_2}\int|E\phi_{\tau_1}|^2|E\phi_{\tau_2}|^2
+    \end{equation*}
+    However, we can't always apply the multilinear restriction if we don't have our $\tau_1, \tau_2$ nicely close to $e_1, e_2$. Hence we categorize them and then deal with them separately.
+    \begin{definition}[transverse caps]
+        We say $(\tau_1, ..., \tau_n)$ are transverse if there is a linear change of variables $L$, with $\det(L)\lesssim K^{O(1)}$, such that $(L\tau_1,...., L\tau_n)$ are $\frac{1}{100n}$ neighborhoods of $e_j$.
+    \end{definition}
+    \begin{remark}
+        A sequence $(\tau_1, ..., \tau_n)$ are not transverse if they all lie within $O(\frac{1}{k})$ neighborhood of the equator on $S^{n-1}$. In $n=2$, this means $\tau_1, \tau_2$ are transverse if they don't lie``directly across from each other'' on the unit circle.   
+    \end{remark}
+    Recall, we decompose $S^1=\bigsqcup\tau$ into $K^{-1}$ caps where $K\sim\log(R)$ and hence there are $\sim K$ caps. We pick out the $\tau$'s that contribute a lot at any given point $|E\phi(x)|$. And that would be 
+    \begin{equation*}
+        S(x)=\{\tau:|E\phi_\tau(x)|\geq\frac{1}{100K}|E\phi(x)|\}
+    \end{equation*}
+    Then we have, 
+    \begin{equation*}
+        \sum_{\tau\not\in S(x)}|E\phi_\tau(x)|\leq\frac{1}{100K}|E\phi_\tau(x)|K\leq\frac{1}{10}|E\phi(x)|
+    \end{equation*}
+    This means $\left|\sum_{\tau\in S(x)}|E\phi_\tau| \right|\geq\frac{9}{10}|E\phi(x)|$, hence we have
+    \begin{equation*}
+        \left|\sum_{\tau\in S(x)}|E\phi_\tau(x)| \right|\sim|E\phi(x)|
+    \end{equation*}
+Now we just need to look at $\tau$'s for each $x$ that are in $S(x)$. 
+\begin{definition}[Broad and narrow points]
+    We call $x$ is broad, if there exists $\tau_1, \tau_2$ such that $(\tau_1, \tau_2)$ are transverse and they are narrow if they are not transverse.    
+\end{definition}
+    To evaluate the broad portion, we note that we can make the linear change of variable such that 
+    \begin{equation*}
+        \int_{{B_R}\cap Broad}|E\phi|^4\leq K^{O(1)}\sum_{\tau_1, \tau_2, transverse}\int|E\phi_{\tau_1}|^2|E\phi_{\tau_2}|^2\leq K^{O(1)}R^\epsilon\sum_{\tau_1,\tau_2}\|\phi_{\tau_1}\|_{L^2}^2\|\phi_{\tau_2}\|_{L^2}^2
+    \end{equation*}
+    We continue with another line:
+    \begin{equation*}
+        K^{O(1)}R^\epsilon\sum\|\phi_{\tau_1}\|_{L^2}^2\|\phi_{\tau_2}\|_{L^2}^2\sim K^{O(1)}R^\epsilon\left(\|\phi_{\tau_1}\|_{L^2}^2+\|\phi_{\tau_2}\|_{L^2}^2 \right)^2\sim K^{O(1)}R^\epsilon\|\phi\|_{L^2}^4
+    \end{equation*}
+    Hence we are done with the broad the $x$'s, in this case, we know all $\tau_1, \tau_2$ are right across from each other, i.e. all the $\tau$ are contained in the $O(\frac{1}{K})$ neighborhood of the equator, then we have $|S(x)|\lesssim 1$.
+    Then we would like to estimate $\int_{B_R\cap narrow}=\int|E\phi|^4$.
+    \begin{equation*}
+        \int_{B_R\cap narrow}|E\phi|^4=\int|\sum_\tau E\phi_\tau|^4\leq\sum_\tau\int|E\phi_\tau|^4
+    \end{equation*}
+    Again, the last line is by Holder's inequality. We are not able to use multilinear restriction anymore, but we can use our powerful tool of induction on scale. Remember we'd like to have $\|\phi\|_{L^2}^4$ on the RHS, now the question is how would we get that from the RHS above. We establish the following inequality;
+    \begin{equation*}
+        \|E\phi\|_{L^4(B_R)}\leq C(R)\|\phi\|_{L^4}
+    \end{equation*}
+    This can be seen as follows:
+    \begin{equation*}
+        \int|E\phi|^4\leq|B_R|\|\phi\|_{L^\infty}^4\leq|B_R|\|\phi\|_{L^1}^4\leq |B_R||S^1|^{1/r}\|\phi\|_{L^4}^4
+    \end{equation*}
+    Hence we define $C(R)$ as the smallest integer that we can place in the inequality above, such that 
+    \begin{equation*}
+        \|E\phi\|_{L^4(B_R)}\leq C(R)\|\phi\|_{L^4}
+    \end{equation*}
+    Now again, we would like to show that $C(R)\lesssim R^\epsilon$.
 
 
+
+
+
+
+    This is done by the following lemma and our change of variable.
+    \begin{lemma}
+        We connect $\|E\phi\|_{L^4
+        (B_R)}$ with $\|\phi\|_{L^4}$
+        \begin{equation*}
+            \|E\phi\|_{L^4(B_R)}\lesssim C(R/K)\|\phi\|_{L^4}
+        \end{equation*}
+    \end{lemma}
+    \begin{proof}
+        We now look at the proof by change of variables. 
+    \end{proof}
+
+
+
+
+\end{proof}
