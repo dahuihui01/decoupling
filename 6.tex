@@ -164,26 +164,44 @@ Now we just need to look at $\tau$'s for each $x$ that are in $S(x)$.
     \begin{equation*}
         \|E\phi\|_{L^4(B_R)}\leq C(R)\|\phi\|_{L^4}
     \end{equation*}
-    Now again, we would like to show that $C(R)\lesssim R^\epsilon$.
-
-
-
-
-
-
-    This is done by the following lemma and our change of variable.
+    Now again, we would like to show that $C(R)\lesssim R^\epsilon$. Clearly the above bound is not good enough, and we would like to inprove that based on induction on scale. This is done by the following lemma. We are looking at $E\phi$ on a smaller scale $\tau$.
     \begin{lemma}
-        We connect $\|E\phi\|_{L^4
-        (B_R)}$ with $\|\phi\|_{L^4}$
+        We connect $\|E\phi_\tau\|_{L^4
+        (B_R)}$ with $\|\phi_\tau\|_{L^4}$
         \begin{equation*}
-            \|E\phi\|_{L^4(B_R)}\lesssim C(R/K)\|\phi\|_{L^4}
+            \|E\phi_\tau\|_{L^4(B_R)}\lesssim C(R/K)\|\phi_\tau\|_{L^4}
         \end{equation*}
     \end{lemma}
     \begin{proof}
-        We now look at the proof by change of variables. 
+        We now look at the proof by change of variables. For each $\tau$ of dimension $K^{-1}\times K^{-2}$, we do a change of variable such that $\tilde{\tau}$ is of dimension $1\times 1$. Because we've scaled it up by $K$, the dimension of the dual rectangle is scaled down by $K^{-1}$, hence we look at $\|E\phi_{\tilde{\tau}}\|_{L^4(B_{R/K})}$. By definition, we have
+        \begin{equation*}
+            \|E\phi_{\tilde{\tau}}\|_{L^4(B_{R/K})}\leq C\left(\frac{R}{K}\right)\|\phi_{\tilde{\tau}}\|_{L^4}
+        \end{equation*}
+        The linear change of variables does not change the constant that we place here.
     \end{proof}
+    \qed
 
-
-
-
+    Now we go back to the previous step where we have $\sum_\tau\int|E\phi_\tau|^4$ on the RHS.
+    \begin{equation*}
+        \int_{B_R\cap narrow}|E\phi|^4\leq\sum_\tau\int|E\phi_\tau|^4\leq C\left(\frac{R}{K}\right)^4\sum_\tau\int|\phi_\tau|^4=C\left(\frac{R}{K}\right)^4\sum_\tau\|\phi_\tau\|_{L^4}^4\sim C\left(\frac{R}{K}\right)^4\|\phi\|_{L^4}^4
+    \end{equation*}
+Hence combining the narrow and broad part, we have 
+\begin{equation*}
+    C(R)\lesssim K^{O(1)}R^\epsilon+C\left(\frac{R}{K}\right)
+\end{equation*}
+By induction, we look at $C(R/K)$, remember the above $K$ comes from $K\sim\log(R)$, hence becomes $\log(R/K)^{O(1)}$ in this case,
+\begin{equation*}
+    C\left(\frac{R}{K}\right)\lesssim \left(\frac{R}{K}\right)^\epsilon
+\end{equation*}
+Hence we have
+\begin{equation*}
+    C(R)\leq C_2(K)R^\epsilon+C_2C_1\left(\frac{R}{K}\right)^\epsilon
+\end{equation*}
+Hence the $R^\epsilon$ term dominates, and is what we want for $C(R)$.
 \end{proof}
+\qed
+
+We restate what we just proved.
+\begin{equation*}
+    \|E\phi\|_{L^4}\lesssim R^\epsilon\|\phi\|_{L^4}
+\end{equation*}
