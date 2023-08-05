@@ -71,7 +71,70 @@ The following proposition is quite indepdent of the previous lemmas.
     \end{align*}
 \end{proof}
 \qed
+
 Here we conclude the section which connects different scales and we will see how they are used in the later sections.
 
 \subsection*{Multilinear Decoupling}
-Just like how we used multilinear restriction to prove the 
+Just like how we used multilinear restriction to prove the restriction conjecture in $n=2$, we will use a multilinear version of the decoupling theorem to prove the actual decoupling theorem. And note how the multilinear decoupling theorem uses the multilinear restriction theorem (where we used the critical exponent of $n=2n/(n-1)$).
+
+We first define the multilinear decoupling theorem.
+\begin{enumerate}
+    \item $P_1,..., P_n\subset P$ are transverse.
+    \item $\Omega_j=N_{1/R}P_j$
+    \item $\Omega_j=\bigsqcup\theta_j$
+    \item Let $MD(R)$ be the smallest constant such that $supp(\widehat{f}_j)\subset P_j$ and $f_j=\sum_{\theta}f_{j,\theta}$ such that the following inequality holds:
+\end{enumerate}
+\begin{equation*}
+    \left\|\prod_{j=1}^n|f_j|^{1/n} \right\|_{L_{avg}^p(B_R)}\leq MD(R)\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^p(\omega B_R)}^{1/n} \right)^{\frac{1}{2}\cdot\frac{1}{n}}
+\end{equation*}
+We first derive a simple relationship between $MD(R)$ and $D(R)$.
+\begin{proposition}[MD(R) is no larger than $D(R)$]
+    If we decompose $P$ and $\Omega$ like defined above, then we have
+    \begin{equation*}
+        MD(R)\leq D(R)
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    This can be done using Holder's inequality. 
+    \begin{equation*}
+        \left\|\prod_{j=1}^n|f_j|^{1/n} \right\|_{L^p}\leq\prod_{j=1}^n\|f_j^{1/n}\|_{L^{pn}}=\prod_{j=1}^n\|f_j\|_{L^p}^{1/n}
+    \end{equation*}
+    And for the RHS, we have
+    \begin{equation*}
+        \prod_{j=1}^n\|f_j\|_{L^p}^{1/n}\leq\prod_{j=1}^n\left(D_p(R)\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^p}^2 \right)^{\frac{1}{n}\cdot\frac{1}{2}}
+    \end{equation*}
+    With $MD(R)$ being the smallest constant one could put there, we have $MD(R)\leq D(R)$.
+\end{proof}
+\qed
+
+Next, we prove another claim that we will use in the next section, which is the multilinear decoupling constant is the constant that we want for the decoupling constant.
+\begin{proposition}[$MD(R)$ is what we want]
+    For $2\leq p\leq\frac{2n}{n-1}$, we have
+    \begin{equation*}
+        MD_{p,n}(R)\lesssim R^\epsilon
+    \end{equation*}
+\end{proposition}
+\begin{proof}
+    We will use Holder and multilinear restriction. First by definition, we need to have $\|\prod\|_{L^p}$ on the LHS, then by Holder, for the average $L^p$ norm, we can replace $p$ with $2n/(n-1)$, then using multilinear restriction, to get $L^2$ on the RHS and again using local orthoganlity on small $\Omega_j$, and then getting back to $L^p$ on the RHS using Holder. The $R^\epsilon$ term arises from the multilinear restriction and all other inequalities do not come with constants.
+    Now we translate that into some math.
+    \begin{align*}
+        \left\|\prod_{j=1}^n|f_j|^{1/n} \right\|_{L^p}&\leq \left\|\prod_{j=1}^n|f_j|^{1/n} \right\|_{L^{2n/(n-1)}}\\
+        &\lesssim R^\epsilon\prod_{j=1}^n\|f_j\|_{L^2}^{1/n}\\
+        &\lesssim R^\epsilon\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^2}^2 \right)^{\frac{1}{n}\cdot\frac{1}{2}}\\
+        &\leq R^\epsilon\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^p}^2 \right)^{\frac{1}{n}\cdot\frac{1}{2}}
+    \end{align*}
+    Here I've skipped some notations, the multilinear restriction gives us $L^2(\omega B_R)$, which aligns with the definition in multilinear decoupling constant.
+\end{proof}
+\qed
+
+So far, we've moven the multilinear decoupling theorem, which states for $2\leq p\leq 2n/(n-1)$, we have
+\begin{equation*}
+    \left\|\prod_{j=1}^n|f_j|^{1/n} \right\|_{L^p(B_R)}\lesssim R^\epsilon\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^p}^2 \right)^{\frac{1}{n}\cdot\frac{1}{2}}
+\end{equation*}
+Now the only thing left for us to do would be to connect the previous two sections to derive the decoupling theorem for the original large paraboloid.
+
+\begin{remark}
+    In the full decoupling theorem, we extended the exponent and that is gained from two Holder's inequlaities used above. 
+\end{remark}
+
+\subsection*{Decoupling Theorem}
