@@ -1,0 +1,77 @@
+\section*{Lecture 7}
+We will prove a weaker version of the decoupling theorem for the paraboloid. First we consider the paraboloid $P=\{x\in\R^n:x_n=x_1^2+...x_n^2\}$, and let $\Omega$ denote the $1/R$-nbd of $P$, i.e. $\Omega=N_{1/R}P$, and let $\theta$ be $R^{-1/2}$-caps of decomposition of $\Omega$. We again denote the decoupling constant as $D_p(R)$. 
+\begin{theorem}[Decoupling, weaker]
+    Let $2\leq p\leq\frac{2n}{n-1}$, we then have
+    \begin{equation*}
+        \|f\|_{L^p}\lesssim R^\epsilon\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{1/2}
+    \end{equation*}
+\end{theorem}
+We recall the stronger version, and the only difference is that now we push the exponent $p$ to be $2\leq p\leq\frac{2(n+1)}{n-1}$. The weaker version avoids more technicalities since $2n/(n-1)$ is the exponent in the multilinear restriction theorem. The proof is in three parts: induction on scales and multiscale tools; multilinear restriction implies multilinear decoupling; finally, the decoupling theorem from multilinear decoupling.
+
+\subsection*{Multiscale tools}
+We now state the two main tools that make our multiscale arguments feasible.
+\begin{lemma}[Linear change of variables preserves $D_p$]
+    Fix $L:\R^n\to\R^n$ a linear change of variables, then for any decomposition of $\Omega$, we have
+    \begin{equation*}
+        D_p(\Omega=\bigsqcup_\theta\theta)=D_p(L\Omega=\bigsqcup L\theta)
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    In other words, this means we can ``stretch'' these decompositions, if we decompose an area using boxes of size $l$, then if we double the size of area we are trying to do decoupling on, then we decompose using boxes of size $2l$ to preserve the decoupling constant. Fix $f$, we want to construct $\tilde{f}$ such that when $supp(\widehat{f})\subset\Omega$, then we have $supp(\widehat{\tilde{f}})\subset L \Omega$.
+    \begin{equation*}
+        \tilde{f}(x)=f((L^*)^{-1}x)
+    \end{equation*}
+    We thus have, for the Fourier transform support of $f$,
+    \begin{equation*}
+        \int e^{2\pi i\omega\cdot x}f((L^*)^{-1}x)=\int e^{2\pi i\omega\cdot L^*y}f(y)|\det(L^*)|dy=|\det(L^*)|\int e^{2\pi iL\omega\cdot y}f(y)dy=|\det(L^*)|\widehat{f}(L\omega)
+    \end{equation*}
+    Hence we've stretched the domain of $\widehat{f}$ from $\Omega$ to $L\Omega$.
+    By definition of the decoupling constant,
+    we have
+    \begin{align*}
+        \|f\|_{L^p}&=|\det(L^*)|^{-1/p}\|\tilde{f}\|_{L^p}\\
+        &\leq |\det(L^*)|^{-1/p}D_p(L\Omega=\bigsqcup L\theta)\left(\sum_\theta\|\tilde{f}_\theta\|_{L^p}^2 \right)^{1/2}\\
+        &\leq D_p(L\Omega=\bigsqcup L\theta)\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{1/2}
+    \end{align*}
+    Hence we have $D_p(\Omega=\bigsqcup\theta)\leq D_p(L\Omega=\bigsqcup L\theta)$. And if we start from the domain $L\Omega$ and let $f(x)=\tilde{f}(((L^{-1})^*)^{-1}x)$, then we get the reserve direction.
+\end{proof}
+\qed
+
+As an immediate corollary to this, we have the following (rough) equality.
+\begin{corollary}[Two decompositions]
+    If we write $R=R_1\cdot R_2$, then define $\theta$ as $R^{-1/2}$ caps and $\tau$ as $R_1^{-1/2}$ caps, then $\tau$ are larger caps that enclose $\theta$ (or $\theta$ is their refinement), then we have the following:
+    \begin{equation*}
+        D_p(\tau=\bigsqcup_{\theta\subset\tau}\theta)=D_p(R_2^{-1/2})
+    \end{equation*}
+\end{corollary}
+\begin{proof}
+    $\tau$ are $R_1^{-1/2}$ caps, while $\theta$ are $R_1^{-1/2}R_2^{-1/2}$ caps, then if we first center $\tau$ are the origin, and multiply the coordinate by $R_1^{-1/2}$, then $\tau$ is linearly transformed roughly into $\Omega$, while $\theta$ have become caps of size $R_2^{-1/2}$. This is what exactly the corollary means. We define an explicit map as follows:
+    \begin{equation*}
+        L_i(\omega)=\begin{cases}
+            R_1^{1/2}(\omega_i-\alpha_i), 1\leq i\leq n\\
+            R_1(\omega_n-\alpha_n)-2\sum_{j=1}^{n-1}\alpha_j(\omega_j-\alpha_j), i=n
+        \end{cases}
+    \end{equation*}
+\end{proof}
+\qed
+
+The following proposition is quite indepdent of the previous lemmas.
+\begin{lemma}
+    Suppose $R=R_1\cdot R_2$, we partition $\Omega$ first into $R_1^{-1/2}$ caps $\tau$, then refine them to $R_1^{-1/2}R_2^{-1/2}$ caps $\theta$. Then we have
+    \begin{equation*}
+        D_p(\Omega=\bigsqcup\theta)\lesssim D_p(\Omega=\bigsqcup\tau)\cdot D_p(R_2)
+    \end{equation*}
+    Or in another form, $D_p(R)\lesssim D_p(R_1)\cdot D_p(R_2)$.
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        \|f\|_{L^p}&\leq D_p(R_1)\left(\sum_\tau\|f_\tau\|_{L^p}^2 \right)^{1/2}\\
+        &\lesssim D_p(R_1)D_p(R_2)\left(\sum\tau\sum{\theta\subset\tau}\|f_\theta\|_{L^p}^2 \right)^{1/2}\\
+        &=D_p(R_1)D_p(R_2)\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{1/2}
+    \end{align*}
+\end{proof}
+\qed
+Here we conclude the section which connects different scales and we will see how they are used in the later sections.
+
+\subsection*{Multilinear Decoupling}
+Just like how we used multilinear restriction to prove the 
