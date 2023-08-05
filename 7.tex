@@ -41,7 +41,7 @@ As an immediate corollary to this, we have the following (rough) equality.
 \begin{corollary}[Two decompositions]
     If we write $R=R_1\cdot R_2$, then define $\theta$ as $R^{-1/2}$ caps and $\tau$ as $R_1^{-1/2}$ caps, then $\tau$ are larger caps that enclose $\theta$ (or $\theta$ is their refinement), then we have the following:
     \begin{equation*}
-        D_p(\tau=\bigsqcup_{\theta\subset\tau}\theta)=D_p(R_2^{-1/2})
+        D_p(\tau=\bigsqcup_{\theta\subset\tau}\theta)=D_p(R_2)
     \end{equation*}
 \end{corollary}
 \begin{proof}
@@ -144,3 +144,53 @@ Recall how we proved
 \end{equation*}
 We separated the points that are ``broad'' and ``narrow'', and noted the multilinear restriciton applies when we are dealing with the broad, but not narrow points; and for the narrow points, we gain information about where the normal vector lies and use that to derive a bound using induction on scales.
 
+We now introduce the main theorem that we will prove about decoupling (which follows from multilinear decoupling), and also directly implies the decoupling constant $D(R)\lesssim R^\epsilon$ by induction on scale and dimension.
+
+\begin{theorem}[Bound on $D_{p,n}(R)$]
+    For any $K\geq 1$, we have
+    \begin{equation*}
+        D_{p,n}(R)\lesssim K^{O(1)}MD_{p,n}(R)+D_{p,n-1}(K^2)D_{p,n}(R/K^2)
+    \end{equation*}
+\end{theorem}
+Now we should how this implies $D_{p,n}(R)\lesssim R^\epsilon$.
+\begin{lemma}
+    Given the bound on $D_{p,n}$ above, we have $D_{p,n}(R)\lesssim R^\epsilon$.
+\end{lemma}
+\begin{proof}
+    Taking $K\sim\log(R)$, we have
+    \begin{equation*}
+        D_{p,n}\left(\frac{R}{K}\right)\lesssim\log(R/K)^{O(1)}\left(\frac{R}{K}\right)^\epsilon+\left(\frac{R}{K}\right)^\epsilon\lesssim\left(\frac{R}{K}\right)^\epsilon
+    \end{equation*}
+    Hence in the equation above in the theorem, we have the dominating term being $R^\epsilon$.
+\end{proof}
+\begin{remark}
+    I don't know what is going on here.
+\end{remark}
+
+Going back to the theorem, let us examine what we have: we have the first term coming from the braod region, where we have caps that can be arranged up to a factor of $K^{O(1)}$ to transverse positions. And the second term comes from the narrow region.
+
+We now give two lemmas, one regarding the broad, and one about the narrow region, so that we know where we are heading towards. And we will show these two lemmas imply the main theorem on the bound on $D_{p,n}(R)$.
+Let $\tau$ be the $K^{-1}$ caps, and $\Omega=\bigsqcup\tau$. We specify the $\tau$'s that we care about, which is defined as follows. Let $S(B)$ denote the significant set of $\tau$ for $B$, where $B=B_r$ is a ball of radius $r$ in the physical space. Recall $f=\sum_\tau f_\tau$,
+\begin{equation*}
+    S(B)=\{\tau: \|f_\tau\|_{L^p(B)}\geq\frac{1}{100 |\tau|}\|f\|_{L^p(B)}\}
+\end{equation*}
+And just like the $n=2$ case for the restriction conjecture, we can show that $f_B=\sum_{\tau\in S(B)}f_\tau$ has $\|f_B\|_{L^p}\sim\|f\|_{L^p}$.
+
+Basically we are decomposing the large ball $B_R$ which we are integrating over into balls $B$ of radius $B=B_r$. Then we categorize these balls as broad and narrow like previously.
+\begin{definition}[Broad and Even balls]
+    We define a ball $B$ to be broad if for the signiciant $\tau$ set, $S(B)$, we can find $\tau_1, ..., \tau_n$ such that they are transverse. (note here the number is the dimension). If $B$ is not broad, it is narrow.
+\end{definition}
+We now state the main two lemmas for broad and narrow estimates.
+\begin{lemma}[Broad]
+    The broad region is composed of disjoint $B$ that are broad, denoted as $Broad=\bigsqcup_{B, Broad}B$, and we have
+    \begin{equation*}
+        \|f\|_{L^p(Broad)}\leq r^{O(1)}MD_{p,n}(R)\left(\sum_{\theta}\|f_\theta\|_{L^p}^2 \right)^{1/2}
+    \end{equation*}
+\end{lemma}
+And for the narrow one. Here we deal with individual balls $B_r$ that are narrow.
+\begin{lemma}[Narrow]
+    For each $B=B_r$, we take $r=K^2$, we have
+    \begin{equation*}
+        \|f_B\|_{L^p(B)}\lesssim D_{p,n-1}(K^2)\left(\sum_{\tau\in S(B)}\|f_\tau\|_{L^p(B)}^2 \right)^{1/2}
+    \end{equation*}
+\end{lemma}
