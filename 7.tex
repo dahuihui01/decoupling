@@ -194,3 +194,33 @@ And for the narrow one. Here we deal with individual balls $B_r$ that are narrow
         \|f_B\|_{L^p(B)}\lesssim D_{p,n-1}(K^2)\left(\sum_{\tau\in S(B)}\|f_\tau\|_{L^p(B)}^2 \right)^{1/2}
     \end{equation*}
 \end{lemma}
+Although here the narrow lemma is stated for each individual balls $B$, we can combine them as in ``parallel decoupling'' to get the same decoupling constant for the entire narrow region. By parallel decoupling, since $D_{p,n-1}$ is the decoupling constant holds for all $B\subset Narrow$, we thus have $Narrow=\bigsqcup_{B,narrow}B$,
+\begin{equation*}
+    \|f\|_{L^p(Narrow)}\lesssim D_{p,n-1}(K^2)\left(\sum_{\tau\in S(B)}\|f_\tau\|_{L^p}^2 \right)^{1/2}
+\end{equation*}
+Now we show how the two equations regarding broad and narrow show the main theorem on $D_{p,n}(R)$.
+\begin{proposition}
+    The above two lemmas imply the main theorem.
+\end{proposition}
+\begin{proof}
+    By observing the main theorem, we notice that we still need to convert our narrow estimate into $\sum_\theta\|f_\theta\|_{L^p}$
+    And this can be done by thinking about $\tau$ as large caps and their refinements are $\theta$'s. Then previously we've shown, if $R=R_1R_2$, with $\tau$ being $R^{-1/2}$ caps, then our $R_1=K^2$, hence $D(R)\lesssim D(K^2)D(\frac{R}{K^2})$,
+    \begin{equation*}
+        \|f\|_{L^p}\lesssim D(K^2)D(R/K^2)\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{1/2}
+    \end{equation*}
+    And we know $D(K^2)\geq\|f\|_{L^p}\left(\sum_\tau\|f_\tau\|_{L^p}^2 \right)^{-1/2}$, hence plugging in, we have
+    \begin{equation*}
+        \|f\|_{L^p(Narrow)}\lesssim D_{p,n-1}(K^2)\left(\sum_\tau\|f_\tau\|_{L^p}^2 \right)^{1/2}\lesssim D_{p,n-1}(K^2)D(R/K^2)\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{1/2}
+    \end{equation*}
+\end{proof}
+    Combining, we have
+    \begin{align*}
+        \int|f|^p&=\int_{Broad}|f|^p+\int_{Narrow}|f|^p\\
+        &\leq K^{O(1)p}MD(R)^p\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{p/2}+D_{p,n-1}^p(K^2)D^p(R/K^2)\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{p/2}\\
+        &=\left(K^{O(1)p}MD(R)^p+D_{p,n-1}^p(K^2)D^p(R/K^2)\right)\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{p/2}\\
+        &\lesssim \left(K^{O(1)}MD(R)+D_{p,n-1}(K^2)D(R/K^2)\right)^p\left(\sum_\theta\|f_\theta\|_{L^p}^2 \right)^{p/2}
+    \end{align*}
+\qed
+
+Now it suffices to prove the two main lemmas. We start with the narrow one.
+
