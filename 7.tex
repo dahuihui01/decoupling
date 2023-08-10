@@ -222,4 +222,41 @@ Now we show how the two equations regarding broad and narrow show the main theor
     \end{align*}
 \qed
 
-Is there a problem?
+We start with the narrow estimate.
+Again, we are trying to show,
+\begin{equation*}
+    \|f\|_{L^p}\lesssim D_{p,n-1}\left(\sum_\tau\|f_\tau\|_{L^p}^2 \right)^{1/2}
+\end{equation*}
+But the parallel decoupling lemma, it suffices to show
+\begin{equation*}
+    \|f\|_{L^p(B)}\lesssim D_{p,n-1}\left(\sum_\tau\|f_\tau\|_{L^p(B)}^2 \right)^{1/2}
+\end{equation*}
+Now we claim, it suffices to show the following lemma.
+\begin{lemma}[Lemma for the Narrow estimate]
+    For the narrow balls $B$, let $\Pi^*$ be the hyperplane such that $nor(\tau)$ is close to $\Pi^*$ for all $\tau\in S(B)$. Again, we set $f_B=\sum_{\tau\in S(B)}f_\tau$, and for any $\Pi$ parallel to $\Pi^*$, we have
+    \begin{equation*}
+        \|f\|_{L^p(B\cap\Pi)}\lesssim D_{p,n-1}(K^2)\left(\sum_\tau\|f_\tau\|_{L^p(\omega B\cap\Pi)}^2 \right)^{1/2}
+    \end{equation*}
+\end{lemma}
+Assuming this lemma, we prove the narrow estimate for each $B$.
+\begin{proof}
+Here we go.
+\begin{align*}
+    \|f\|_{L^p(B)}^p&\sim\|f_B\|_{L^p(B)}^p\\
+    &=\int_t\|f\|_{L^p(B\cap\Pi)}^pdt\\
+    &\lesssim D^p\int\left(\sum_\tau\|f_\tau\|_{L^p(\omega B\cap\Pi)}^2 \right)^{p/2}dt\\
+    &=D^p\int \left(\sum_\tau\|f_\tau\|_{L^p(\omega B\cap\Pi)}^2 \right)\cdot \left(\sum_\tau\|f_\tau\|_{L^p(\omega B\cap\Pi)}^2\right)^{\frac{p-2}{2}}dt\\
+    &\leq D^p\sum_{\tau\in S(B)}\int\|f_\tau\|_{L^p(B\cap\Pi)}^2 \left(\sum_\tau\|f_\tau\|_{L^p(\omega B\cap\Pi)}^2\right)^{\frac{p-2}{2}}\\
+    &\leq D^p\sum_{\tau\in S(B)}\|(\|f_\tau\|_{L^p(B\cap\Pi)}^2)\|_{L^{p/2}}\|(\sum_\tau\|f_\tau\|_{L^p}^2)^{(p-2/)/2}\|_{L^(p/(p-2))}\\
+    &=D^p\sum_{\tau\in S(B)}\left(\int_t\|f_\tau\|_{L^p(B\cap\Pi)}^p\right)^{2/p} dt\cdot \left(\int_t\left(\sum\|f_\tau\|_{L^p(B\cap\Pi)}^2\right)^{p/2}\right)^{(p-2)/p}\\
+    &\leq D^p\sum_{\tau\in S(B)}\left(\int_t\|f_\tau\|_{L^p(B\cap\Pi)}^p\right)^{2/p} dt\cdot \left(\int_t\|f_\tau\|_{L^p(B\cap\Pi)}^p\right)^{-2/p}\int_t\left(\sum\|f_\tau\|_{L^p(B\cap\Pi)}^2\right)^{p/2}\\
+    &=D^p\left(\sum_\tau\|f_\tau\|_{L^p(B)}^2 \right)^{p/2}
+\end{align*}
+Taking the $p$th root, we get 
+\begin{equation*}
+    \|f\|_{L^p(B)}\lesssim D_{p,n-1}\left(\sum_\tau\|f_\tau\|_{L^p(B)}^2\right)^{1/2}
+\end{equation*}
+\end{proof}
+\qed
+
+Hence to show the narrow estimate, it suffices to show the lemma that was introduced.
