@@ -1,3 +1,65 @@
 \section*{Lecture 12}
 We will recall the setup and will now introduce a fourth tool in induction on scale to prove the full decoupling theorem by Bourgain and Demeter.
 
+Let $P$ denote the paraboloid in $\R^n$, and let $\theta$ be the $R^{-1/2}$ caps of decomposition of $\Omega$. And we have the following estimate:
+\begin{theorem}[Bourgain and Demeter]
+    $f$ has the Fourier support $\widehat{f}$ in $\Omega$, then we have, for $2\leq p\leq\frac{2(n+1)}{n-1}$,
+    \begin{equation*}
+        \|f\|_{L^p}\lesssim R^\epsilon\left(\sum\|f_\theta\|_{L^p}^2 \right)^{1/2}
+    \end{equation*}
+    In other words, the decoupling constant $D_{p,n}\lesssim R^\epsilon$.
+\end{theorem}
+We now define a new notation that encompasses all the information that we have gathered to pass from one scale to another.
+
+\begin{equation*}
+    M_{p,q}(r,\sigma)={Avg}_{B_r\subset B_R}\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L_{avg}^q(B_r)}^2 \right)^{\frac{1}{2}\frac{1}{n}p}
+\end{equation*}
+In the Fourier space, we disect $\Omega_j$ into $\sigma^{-1}$ caps of $\theta$; then we come back to the physical space and take $\sigma=r^{1/2}$ to disect the physical space, and divide $B_R$ into finitely overlapping unions of balls $B_r$, and note $f_{j,\theta}$ is roughly constant on $r^{1/2}\times r$-tubes pointing in the normal direction of $\theta$.
+
+We consider two important cases. The first one is if we take $\sigma=r=1$,
+then we would have
+\begin{equation*}
+    M_{p,q}(1,1)=Avg_{B_1\subset B_R}\prod_{j=1}^n\|f_j\|_{L_a^q(B_1)}^{\frac{1}{n}p}=\avint_{B_R}\prod_{j=1}^n|f_j|^{\frac{p}{n}}
+\end{equation*}
+
+This is because $B_1$ is small enough to invoke the locally constant property, we have $|f_j|$ being constant on $B_1$. Hence we have
+\begin{equation*}
+    \prod_{j=1}^n\|f_j\|_{L_a^q(B_R)}^{\frac{1}{n}p}\sim\prod |f_j|^{\frac{1}{n}p}\sim\avint_{B_1}\prod_{j=1}^n|f_j|^{\frac{1}{n}p}
+\end{equation*}
+Let's recall the multilinear decoupling inequality:
+\begin{equation*}
+    \left\|\prod_{j=1}^n|f_j|^{1/n} \right\|_{L_{avg}^p(B_R)}\lesssim R^\epsilon\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^p(\omega B_R)}^{1/n} \right)^{\frac{1}{2}\frac{1}{n}}
+\end{equation*}
+This means $M_{p,q}(1,1)$ is the LHS of the multilinear decoupling inequality (raised to the $p$-th power), then now let's see the RHS. Our second example would be to take $r=R$, and $\sigma=R^{1/2}$, then we would have
+\begin{equation*}
+    M_{p,q}(R,R^{1/2})=\prod_{j=1}^n\left(\sum_{\theta:R^{-1/2}caps}\|f_{j,\theta}\|_{L_a^q(B_R)^2} \right)^{\frac{1}{n}\frac{1}{2}p}
+\end{equation*}
+The above equation is the RHS of the multilinear decoupling inequality.
+
+Now it is clear what we have to do, that is to increase $r,\sigma$ to go from $M_{p,q}(1,1)$ to $M_{p,q}(R, R^{1/2})$.
+
+We now introduce and prove the main tools that prove the full decoupling theorem.
+\begin{lemma}[Orthoganlity]
+    If $\sigma\leq r$, then we have
+    \begin{equation*}
+        M_{p,2}(r,\sigma)\lesssim M_{p,2}(r,r)
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    We are fixing $q=2$, hence we have
+    \begin{equation*}
+        M_{p,2}(r,\sigma)=Avg_{B_r\subset B_R}\prod_{j=1}^n\left(\sum_{\tau\subset\Omega_j}\|f_{j,\tau}\|_{L^2}^2\right)^{\frac{1}{n}\frac{1}{2}p}
+    \end{equation*}
+    Then we decompose each $\tau$ into even smaller $r^{-1}$ caps, given $\sigma\leq r$, then by orthoganlity inequality, we have
+    \begin{equation*}
+        \|f_{j,\tau}\|_{L^2}\lesssim \left(\sum_{\theta\subset\tau}\|f_{j,\theta}\|_{L^2}^2 \right)^{1/2}
+    \end{equation*}
+    Hence combining, we have
+    \begin{equation*}
+        M_{p,2}(r,\sigma)\lesssim Avg_{B_r\subset B_R}\prod_{j=1}^n\left(\sum_{r\subset\Omega_j}\|f_{j,\theta}\|_{L^2}^2 \right)^{\frac{1}{2}\frac{1}{n}p}=M_{p,2}(r,r)
+    \end{equation*}
+\end{proof}
+\qed
+
+
+Now we prove the Holder's inequality.

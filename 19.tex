@@ -1,0 +1,19 @@
+\section{Lecture 19}
+We dissect slabs using arcs.
+
+\begin{lemma}
+    We have $r_1\leq r_2$, then we have
+    \begin{equation*}
+        M_{p,p}(r_1, \sigma)\leq M(_{p,p}r_2, \sigma)
+    \end{equation*}
+\end{lemma}
+\begin{proof}
+    By definition, we have
+    \begin{equation*}
+        M_{p,p}(r_1, a)=Avg_{B_{r_1}\subset B_R}\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^p}^2 \right)^{\frac{1}{2}\frac{1}{k}p}=Avg_{B_2\subset B_R}Avg_{B_1\subset B_2}\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^p}^2 \right)^{\frac{1}{2}\frac{1}{k}p}
+    \end{equation*}
+   Then we examine 
+   \begin{equation*}
+    Avg_{B_1\subset B_2}\prod_{j=1}^n\left(\sum_{\theta\subset\Omega_j}\|f_{j,\theta}\|_{L^p}^2 \right)^{\frac{1}{2}\frac{1}{k}p}\lesssim \prod_{j=1}^n \left( Avg_{B_1\subset B_2}\left(\sum\|f_{j,\theta}\|_{L^p}^2\right)^{\frac{1}{2}p}\right)^{\frac{1}{k}}\lesssim \prod_{j=1}^n\left(\sum\|f_{j,\theta}\|_{L^p}^2 \right)^{\frac{1}{2}\frac{1}{k}p}
+   \end{equation*}
+\end{proof}
