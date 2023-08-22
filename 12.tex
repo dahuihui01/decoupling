@@ -38,7 +38,7 @@ The above equation is the RHS of the multilinear decoupling inequality.
 
 Now it is clear what we have to do, that is to increase $r,\sigma$ to go from $M_{p,q}(1,1)$ to $M_{p,q}(R, R^{1/2})$.
 
-We now introduce and prove the main tools that prove the full decoupling theorem.
+We now introduce and prove the main tools that prove the full decoupling theorem. The first one concerns with local orthoganality and it says the finer caps are actually worse in approximating.
 \begin{lemma}[Orthoganlity]
     If $\sigma\leq r$, then we have
     \begin{equation*}
@@ -62,4 +62,35 @@ We now introduce and prove the main tools that prove the full decoupling theorem
 \qed
 
 
-Now we prove the Holder's inequality.
+Now we prove a result using multilinear Kakeya.
+\begin{lemma}[MK]
+    For $p=\frac{2n}{n-1}$, if $r\leq R^{1/2}$, then we have the following:
+    \begin{equation*}
+        M_{p,2}(r,r)\lesssim r^\epsilon M_{p,2}(r^2, r)
+    \end{equation*}
+\end{lemma}
+\begin{remark}
+    Let's interpret this lemma. This states the if the dissection of the Fourier space is small enough, we then would have it bounded up by not so big value of a a really large ball?
+\end{remark}
+To prove this, we first realize for $p=\frac{2n}{n-1}$, the RHS exponent becomes $\frac{1}{n-1}$ which is the multilinear Kakeya exponent. Recall we have, if we have a weighted characterstic function $g_j$ such that
+\begin{equation*}
+    g_j=\sum_aT_{j,a}W_{j,a}
+\end{equation*}
+where $W_{j,a}\geq 0$, $T_{j,a}$ is a tube close to $x_j$ for all $a$.
+We can invoke the multilinear Kakeya in this case.
+\begin{equation*}
+    \int_{Q_s}\prod_{j=1}^n|g_j|^{\frac{1}{n-1}}\lesssim S^\epsilon\prod_{j=1}^n\left(\int_{Q_s}|g_j| \right)^{\frac{1}{n-1}}
+\end{equation*}
+In this case, if we have $g_j=\sum_\theta\|f_{j,\theta}\|_{L^2(B_r)}^2$, for $x\in B_r$, then $g_j$ is a characteristic function with tubes of size $r\times r^2$ pointing near the normal direction of $\Sigma_j$ with positive weights.
+We thus have
+\begin{align*}
+    M_{p,2}(r,r)&=Avg_{B_{r^2}\subset B_R}Avg_{B_r\subset B_{r^2}}\prod_{j=1}^n\left(\sum_\theta\|f_{j,\theta}\|_{L^2(B_r)}^2 \right)^{\frac{p}{2n}}\\
+    &\sim Avg_{B_{r^2}\subset B_R}\avint\prod_{j=1}^n|g_j|^{\frac{1}{n-1}}\\
+    &\lesssim Avg_{B_{r^2}\subset B_R}r^\epsilon\prod_{j=1}^n\left(\avint|g_j| \right)^{\frac{1}{n-1}}\\
+    &\lesssim r^\epsilon Avg_{B_{r^2}\subset B_R}\prod_{j=1}^n\left(\sum_{\theta}\|f_{j,\theta}\|_{L^2(B_{r^2})}^2 \right)^{\frac{1}{n-1}}\\
+    &=r^\epsilon M_{p,2}(r^2, r)
+\end{align*}
+\qed
+
+This completes our proof.
+

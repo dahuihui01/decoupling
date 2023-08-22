@@ -1,4 +1,39 @@
 \section{Lecture 9}
 
 We restate our goal and continue with the Broad estimate.
+\begin{theorem}[Decoupling, Bourgain]
+    Suppose $f$ is such that $\widehat{f}\subset\Sigma$, where $\Sigma$ is the $N_{1/R}$-nbhd of the truncated paraboloid, 
+\end{theorem}
+Let's recall the multilinear decoupling theorem. Let $\Sigma=\bigsqcup_j\Sigma_j$, such that for each $j$, we have the normal of $\Sigma_j$ to be close to the $x_j$ axis. And we then separate each $\Sigma_j$ into $\theta$ which are our $R^{-1/2}$ caps. And multilinear decoupling is as follows:
+\begin{theorem}[Multilinear Decoupling]
+    Let $f_{j,\theta}$ be such that $\widehat{f}_{j,\theta}\subset\theta\subset\Sigma_j$, and we have
+    \begin{equation*}
+        \|\prod_{j=1}^n|f_j|^{1/n}\|_{L^p}\lesssim R^\epsilon\prod_{j=1}^n\left(\sum_{\theta}\|f_{j,\theta}\|_{L^p}^2 \right)^{\frac{1}{2}\frac{1}{n}}
+    \end{equation*}
+\end{theorem}
+
+We state the main lemma which contains the broad and narrow estimate as two terms.
+\begin{lemma}[Main]
+    For $2\leq p\leq\frac{2n}{n-1}$, we have
+    \begin{equation*}
+        D_{p,n}(R)\lesssim K^{O(1)}MD_{p,n}(R)+D_{p,n-1}(K^2)D_{p,n}(R/K^2)
+    \end{equation*}
+\end{lemma}
+Hence by indunction on both scale $R$ and dimension $n$, note the allowable range for $p$ increases as $n$ decreases, hence by induction, we are able to conclude the main theorem.
+
+For the broad estimate, we would like to show
+\begin{equation*}
+    \|f\|_{L^p(Broad)}\lesssim K^{O(1)}R^\epsilon\left(\sum\|f_\theta\|_{L^p}^2 \right)^{1/2}
+\end{equation*}
+And for the narrow estimate, we've shown that for $\tau$, which are $K^{-1}$ caps that contain $\theta$ caps, we have
+\begin{equation*}
+    \|f\|_{L^p(Narrow)}\lesssim D_{p,n-1}(K^2)\left(\sum\|f_\tau\|_{L^p}^2 \right)^{1/2}
+\end{equation*}
+And by decoupling at the scale of $R/K^2$, hence if we rescale $\tau$ to the paraboloid, we would get $K/R^{1/2}$, hence we have
+\begin{equation*}
+    \|f_\tau\|_{L^p}\lesssim D_{p,n}(R/K^2)\left(\sum_{\theta\subset\tau}\|f_\theta\|_{L^p}^2 \right)^{1/2}
+\end{equation*}
+We then would have recovered the main lemma.
+
+Now we show the broad estimate.
 
