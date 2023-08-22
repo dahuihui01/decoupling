@@ -121,5 +121,15 @@ Next we have, if $\|f\|_{L^q}\leq\|f\|_{L^{q_1}}^{\alpha_1}\|f\|_{L^{q_2}}^{\alp
 \begin{equation*}
     M_{p,q}(r,\sigma)\leq M_{p,q_1}^{\alpha_1}(r, \sigma)M_{p,q_2}^{\alpha_2}(r,\sigma)
 \end{equation*}
-
+\begin{proof}[of lemma above]
+    We start with the LHS of multilinear decoupling, which is $M_{p,2}(1,1)$,
+    \begin{align*}
+        M_{p,2}(1,1)&\lesssim R^{O(\delta)}M_{p,2}(r,1)\\
+        & O \lesssim R^{O(\delta)}M_{p,2}(r,r)\\
+        & H \lesssim R^{O(\delta)}M_{p,\frac{(n-1)p}{n}}(r,r)\\
+        & MK2 \lesssim R^{O(\delta)}M_{p,\frac{(n-1)p}{n}}(r^2,r)\\
+        & H_2 \lesssim R^{O(\delta)} M_{p,2}(r^2,r)^{1/2}M_{p,p}(r^2,r)^{1/2}
+    \end{align*}
+\end{proof}
+\qed
 
