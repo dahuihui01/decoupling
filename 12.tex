@@ -32,7 +32,7 @@ Let's recall the multilinear decoupling inequality:
 \end{equation*}
 This means $M_{p,q}(1,1)$ is the LHS of the multilinear decoupling inequality (raised to the $p$-th power), then now let's see the RHS. Our second example would be to take $r=R$, and $\sigma=R^{1/2}$, then we would have
 \begin{equation*}
-    M_{p,q}(R,R^{1/2})=\prod_{j=1}^n\left(\sum_{\theta:R^{-1/2}caps}\|f_{j,\theta}\|_{L_a^q(B_R)^2} \right)^{\frac{1}{n}\frac{1}{2}p}
+    M_{p,q}(R,R^{1/2})=\prod_{j=1}^n\left(\sum_{\theta:R^{-1/2}caps}\|f_{j,\theta}\|_{L_a^q(B_R)}^2 \right)^{\frac{1}{n}\frac{1}{2}p}
 \end{equation*}
 The above equation is the RHS of the multilinear decoupling inequality.
 
@@ -93,4 +93,33 @@ We thus have
 \qed
 
 This completes our proof.
+
+We make a note on the difference between full decoupling theorem and the critical exponent of $p=\frac{2n}{n-1}$, if $p>\frac{2n}{n-1}$, then we can prove an estimate of the form
+\begin{equation*}
+    M_{p,2}(r,r)\lesssim r^\alpha M_{p,2}(r^2,r)
+\end{equation*}
+This makes it hard to increase the scale and to go from $r$ to $R$, as we introduce a nontrivial power of $r^\alpha$ each time. This means we will need a stronger multilinear decoupling theorem stated as follows:
+\begin{theorem}[MK2]
+    If $r\leq R^{1/2}$, then we have
+    \begin{equation*}
+        M_{p,\frac{(n-1)p}{n}\geq 2}(r,r)\lesssim r^\epsilon M_{p,\frac{(n-1)p}{n}\geq 2}(r^2,r)
+    \end{equation*}
+\end{theorem}
+We will prove this shortly, but observe once we have this, we can mimic the proof for $p\leq\frac{2n}{n-1}$.
+\begin{lemma}
+    If $p=\frac{2(n+1)}{n-1}$, then we have
+    \begin{equation*}
+        M_{p,2}(1,1)\lesssim R^{O(\delta)}M_{p,2}(r^2,r)^{1/2}M_{p,p}(r^2,r)^{1/2}
+    \end{equation*}
+\end{lemma}
+Notice we have two terms on the RHS, hence we now introduce the two Holder inequalities that we need (we will just take them for granted, they are not hard to prove).
+If we have $q_1\leq q_2$, then
+\begin{equation*}
+    M_{p,q_1}(r,\sigma)\leq M_{p,q_2}(r,\sigma)
+\end{equation*}
+Next we have, if $\|f\|_{L^q}\leq\|f\|_{L^{q_1}}^{\alpha_1}\|f\|_{L^{q_2}}^{\alpha_2}$, then we have
+\begin{equation*}
+    M_{p,q}(r,\sigma)\leq M_{p,q_1}^{\alpha_1}(r, \sigma)M_{p,q_2}^{\alpha_2}(r,\sigma)
+\end{equation*}
+
 
