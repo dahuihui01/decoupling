@@ -100,12 +100,42 @@ We make a note on the difference between full decoupling theorem and the critica
 \end{equation*}
 This makes it hard to increase the scale and to go from $r$ to $R$, as we introduce a nontrivial power of $r^\alpha$ each time. This means we will need a stronger multilinear decoupling theorem stated as follows:
 \begin{theorem}[MK2]
-    If $r\leq R^{1/2}$, then we have
+    If $r\leq R^{1/2}$, if we have $\frac{(n-1)p}{n}\geq 2$, then we have
+    then we have
     \begin{equation*}
-        M_{p,\frac{(n-1)p}{n}\geq 2}(r,r)\lesssim r^\epsilon M_{p,\frac{(n-1)p}{n}\geq 2}(r^2,r)
+        M_{p,\frac{(n-1)p}{n}}(r,r)\lesssim r^\epsilon M_{p,\frac{(n-1)p}{n}}(r^2,r)
     \end{equation*}
 \end{theorem}
-We will prove this shortly, but observe once we have this, we can mimic the proof for $p\leq\frac{2n}{n-1}$.
+\begin{remark}
+    Notice once we have this estimate, we are able to mimic what we did for the case $p=\frac{2n}{n-1}$.
+\end{remark}
+\begin{proof}
+We will prove this now. Notice if we further separate the $\theta$'s based on their contribution, we get
+\begin{equation*}
+    \Theta_{j,\lambda}=\{\theta: \frac{\lambda}{2}\leq\|f_{j,\theta}\|_{L^q}\leq 2\lambda\}
+\end{equation*}
+Then if we define $\lambda_j^+=\max\{\lambda: |\Theta_{j,\lambda}|\geq 1\}$, this quantity records the largest quantity that we have for each $j$ that we can still ensure some value of $\|f_{j,\theta}\|_{L^q}$ lands in there. And we observe, if a $lambda$ is too small compared to this $\lambda_j^+$, then it doesn't contribute much to the overall quantity. We have
+\begin{equation*}
+    \sum_{\lambda\leq r^{-100n}\lambda_j^+, \theta\in\Theta_{j,\lambda}}\|f_{j,\theta}\|_{L^q}\ll \sum_{\theta\subset\Theta_{j,\lambda_j^+}}\|f_{j,\theta}\|_{L^q}
+\end{equation*}
+This inequality gives that compared to the largest $\lambda_j^+$ (which capture many true values) the ones that have very tiny $\lambda$ does not count too much. Hence we have
+\begin{equation*}
+    \sum_\theta\|f_{j,\theta}\|_{L^q(B_{r^2})}^q=\sum_\lambda\sum_{\theta\in\Theta_{j,\lambda}}\|f_{j,\theta}\|_{L^q(B_{r^2})}^q\sim \sum_{r^{-100n}\lambda_j^+\leq\lambda\leq\lambda_j^+}\sum_{\theta\in\Theta_{j,\lambda}}\|f_{j,\theta}\|_{L^q(B_{r^2})}^q
+\end{equation*}
+Hence to prove MK2, by definition of $M$, $\theta$ are $r^{-1}$ caps, we have on the LHS,
+\begin{equation*}
+    \Avg_{B_{r^2}\subset B_R}\Avg_{B_r\subset B_{r^2}}\prod_{j=1}^n\left(\sum_{\theta}\|f_{j,\theta}\|_{L^q}^2 \right)^{\frac{1}{2np}}
+\end{equation*}
+Hence for inside of the averaging sign, we have
+\begin{align*}
+    \Avg_{B_r\subset B_{r^2}}\prod_{j=1}^n\left(\sum_\theta\|f_{j,\theta}\|_{L^q}^2 \right)^{\frac{1}{2np}}&\leq (\log{r})^{O(1)}\max_{\lambda_1, ..., \lambda_n}\left[\avint_{B_{r^2}}\prod\left(\sum_{\theta\subset\Theta_{j,\lambda_j}}\|f_{j,\theta}\|_{L^q(B_r)}^2\right)^{\frac{1}{2np}} \right]\\
+    &\leq(\log{r})^{O(1)}r^\epsilon\max_{\lambda_1, ..., \lambda_n}\prod\left(\sum_{\theta\in\Theta_{j,\lambda_j}}\|f_{j,\theta}\|_{L_a^q(B_{r^2})}^2 \right)^{\frac{1}{2np}}
+\end{align*}
+
+
+
+\end{proof}
+
 \begin{lemma}
     If $p=\frac{2(n+1)}{n-1}$, then we have
     \begin{equation*}
@@ -132,4 +162,3 @@ Next we have, if $\|f\|_{L^q}\leq\|f\|_{L^{q_1}}^{\alpha_1}\|f\|_{L^{q_2}}^{\alp
     \end{align*}
 \end{proof}
 \qed
-
