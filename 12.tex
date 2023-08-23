@@ -162,3 +162,82 @@ Next we have, if $\|f\|_{L^q}\leq\|f\|_{L^{q_1}}^{\alpha_1}\|f\|_{L^{q_2}}^{\alp
     \end{align*}
 \end{proof}
 \qed
+
+To justify $H_2$, the last line, we should have to show $f$ satisfies:
+\begin{equation*}
+    \|f\|_{L^\frac{2n+2}{n}}\lesssim \|f\|_{L^2}^{1/2}\|f\|_{L^\frac{2n+2}{n-1}}^{1/2}
+\end{equation*}
+We thus start from the LHS:
+\begin{equation*}
+    \|f\|_{L^\frac{2n+2}{n}}^\frac{2n+2}{n}=\int|f|\cdot|f|^{\frac{n+2}{n}}\leq\|f\|_{L^2}\|f^\frac{n+2}{n}\|_{L^2}
+\end{equation*}
+The first term, when raised to the $\frac{n}{2b+2}<1/2$, is bounded by $\|f\|_{L^2}^{1/2}$. And the second term, we have
+\begin{equation*}
+    \left(\int|f|^{\frac{2n+4}{n}}\right)^{\frac{n}{2n+2}\cdot\frac{1}{2}}=\left(\int|f|^{\frac{2n+2}{n}}|f|^\frac{2}{n}\right)^{\frac{n}{2n+2}\cdot\frac{1}{2}} \lesssim \|f\|_{L^p}^{1/2}
+\end{equation*}
+Thus justified the last step. Now we would like to examine what we have:
+\begin{equation*}
+    M_{p,2}(1,1)\lesssim R^{O(\delta)}M_{p,2}(r^2,r)^{1/2}M_{p,p}(r^2,r)^{1/2}
+\end{equation*}
+Notice the $M_{p,2}(r^2,r)$ term is an immediate term in our above process, hence to can keep dissecting it i.e. we can have
+\begin{equation*}
+    M_{p,2}(r^2,r)^{1/2}\lesssim M_{p,2}(r^2, r^2)^{1/2}\lesssim M_{p,\frac{2n+2}{n}}(r^2, r^2)^{1/2}\lesssim ...\lesssim M_{p,2}(r^4, r^2)^{1/4}M_{p,p}(r^4, r^2)^{1/4}
+\end{equation*}
+Hence we observe, the $M_{p,2}(r^2,r)$ term gets smaller and smaller, and we now analyze $M_{p,p}(r^2,r)$ term. Our goal is to bound $M_{p,p}(r^2, r)$ by $D(R/r^2)^pM_{p,p}(R, R^{1/2})$.
+\begin{proposition}
+    By parallel decoupling and parabolic rescaling, we have the following
+    \begin{equation*}
+        M_{p,p}(r,\sigma)\leq D(R/\sigma^2)^pM_{p,p}(R, R^{1/2})
+    \end{equation*}
+\end{proposition}
+\begin{proof} Assume $\tau$ are $\sigma^{-1}$ caps, we have
+    \begin{equation*}
+        M_{p,p}(r,\sigma)=\Avg_{B_r\subset B_R}\prod_{j=1}^n\left(\sum_\tau\|f_{j,\tau}\|_{L^p} \right)^{\frac{p}{2n}}
+    \end{equation*}
+    We will write $\Avg$ as an average integral for simplicity.
+    \begin{align*}
+        M_{p,p}(r,\sigma)&=\avint_{B_R}\prod_{j=1}^n\left(\sum_\tau\|f_{j,\tau}\|_{L^p(B_r)}^2 \right)^{\frac{p}{2n}}\\
+        &\leq \prod_{j=1}^n\left(\avint_{B_R}\left(\sum_\tau\|f_{j,\tau}\|_{L^p(B_r)}^2 \right)^{p/2}\right)^{1/n}\\
+        &\leq \prod_{j=1}^n\left(\sum_\tau\avint_{B_R}\|f_{j,\tau}\|_{L^p(B_r)}^2 \right)^{p/2n}\\
+        &=\prod_{j=1}^n\left(\sum_\tau\|f_{j,\tau}\|_{L^p(B_R)}^2 \right)^{p/2n}
+    \end{align*}
+\end{proof}
+Then we want to further decompose $\tau$ into smaller caps of size $R^{-1/2}$ of $\theta$'s, and we would get
+\begin{equation*}
+    \|f_{j,\tau}\|_{L^p}\leq D_p(\tau=\bigsqcup\theta)\left(\sum\|f_{j,\theta}\|_{L^p}^2 \right)^{1/2}
+\end{equation*}
+
+Then we have
+\begin{equation*}
+    M_{p,p}(r,\sigma)\leq D_p(\tau=\bigsqcup\theta)^p\prod_{j=1}^n\left(\sum_{\theta}\|f_{j,\theta}\|_{L^p}^2 \right)^{p/2n}=D_p(\tau=\bigsqcup\theta)^pM_{p,p}(R,R^{1/2})
+\end{equation*}
+We note here that $D_p(\tau=\bigsqcup\theta)=D_p(R/\sigma^2)$.
+Hence combining, we have
+\begin{equation*}
+    M_{p,2}(1,1)\lesssim R^{O(\delta)}M_{p,2}(r^2,r)^{1/2}D_p(R/\sigma^2)^{p/2}M_{p,p}(R,R^{1/2})^{1/2}
+\end{equation*}
+Hence if we choose $r=R^\delta, \delta=2^{-s}$, then we get
+\begin{equation*}
+    D_{p,2}(1,1)\lesssim R^{O(\delta)}D_p(R^{1-2\delta})M_{p,2}(r^2, r)^{1/2}M_{p,p}(R, R^{1/2})^{1/2}
+\end{equation*}
+And for the $M_{p,2}(r^2, r)^{1/2}$, like commented above, we can repeat the process and will get
+\begin{equation*}
+    M_{p,2}(r^2, r)^{1/2}\lesssim D_p(R^{1-4\delta})M_{p,2}(r^4, r^2)^{1/4}M_{p,p}(R,R^{1/2})^{1/4}
+\end{equation*}
+Hence combining, we have
+\begin{equation*}
+    M_{p,2}(1,1)\lesssim R^{O(\delta)}D_p(R^{1-2\delta})^{p/2}D_p(R^{1-4\delta})^{p/4}M_{p,2}(r^2,r)^{1/4}M_{p,p}(R,R^{1/2})^{3/4}
+\end{equation*}
+We can simply repeat this process to further break down $M_{p,2}(r^2, r)$. We then eventually get 
+\begin{equation*}
+    M_{p,2}(1,1)\lesssim R^{O(\delta)}D_p(R^{1-2\delta})^{p/2}D_p(R^{1-4\delta})^{p/4}...D_p(R^{1/2})^{p/2^{-s+1}}M_{p,p}(R,R^{1/2})
+\end{equation*}
+So eventually, we interpret this in our multilinear decoupling constant and that translates to
+\begin{equation*}
+    MD_{p}(R)\lesssim R^{O(\delta)}D_p(R^{1-2\delta})^{1/2}D_p(R^{1-4\delta})^{1/4}...D_p(R^{1/2})^{1/2^{-s+1}}
+\end{equation*}
+Now we wish to bound this term by $R^\epsilon$ and recall
+\begin{equation*}
+    D_{p,n}(R)\lesssim K^{O(1)}MD_{p,n}(R)+D_{p,n-1}(K^2)D_{p,n}(R/K^2)
+\end{equation*}
+We now illustrate how we bound the above $MD$ term by $R^\epsilon$ in Lecture 13.
